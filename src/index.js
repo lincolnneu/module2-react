@@ -1,8 +1,10 @@
 // entry point of an app
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom' // only need this in high level index
+import HelloWorld from './hello'
+
 
 ReactDOM.render(
-    <h1>Hello World</h1>,
+    <HelloWorld/>,
     document.getElementById('root') // default id is root
 );
