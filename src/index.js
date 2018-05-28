@@ -2,9 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom' // only need this in high level index
 import HelloWorld from './hello'
-
+import CourseManager from './containers/CourseManager'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 ReactDOM.render(
-    <HelloWorld/>,
+    <CourseManager/>,
     document.getElementById('root') // default id is root
 );
