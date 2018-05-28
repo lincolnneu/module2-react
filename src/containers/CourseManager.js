@@ -1,7 +1,7 @@
 // top level application
 import React, {Component} from 'react'
-import CourseCard from './CourseCard'
-
+import CourseCard from '../components/CourseCard'
+import ModuleList from './ModuleList'
 
 export default class CourseManager extends Component{
     render(){
@@ -9,6 +9,7 @@ export default class CourseManager extends Component{
             // className="card-deck: This part could be assigned as another container.js
             <div className="container-fluid">
                 <h1>Course Manager</h1>
+                <ModuleList/>
                 <div className="card-deck">
                     <CourseCard/>
                     <CourseCard/>
