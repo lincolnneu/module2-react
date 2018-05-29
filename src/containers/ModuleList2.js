@@ -20,7 +20,7 @@ class ModuleList2 extends React.Component{
 
     renderListOfModules(){
         let modules = this.state.modules.map(function(module){
-            return <ModuleListItem title="asdasdasdsa"/>
+            return <ModuleListItem title={module.title} />
         })
             return modules;
     }
