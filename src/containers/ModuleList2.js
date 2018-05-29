@@ -18,8 +18,13 @@ class ModuleList2 extends React.Component{
         };
 
         this.titleChanged = this.titleChanged.bind(this); // listener to the event.
-
+        this.createModule = this.createModule.bind(this); // declare event handler.
     }
+
+    createModule(event){
+        console.log(this.state.module);
+    }
+
 
     titleChanged(event){
         console.log(event.target.value);
@@ -38,6 +43,7 @@ class ModuleList2 extends React.Component{
 
     // all render functions only takes single element
     // btn-block: take entire place of the page.
+    // onclick: when clicking on such button, the function will be called
     render(){
         return (
             <div>
@@ -46,7 +52,7 @@ class ModuleList2 extends React.Component{
                        onChange={this.titleChanged}
                        placeholder="title"/>
 
-                <button className="btn btn-primary btn-block">
+                <button onClick={this.createModule} className="btn btn-primary btn-block">
                     <i className="fa fa-plus"></i>
                 </button>
 
