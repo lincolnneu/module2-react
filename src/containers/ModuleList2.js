@@ -37,6 +37,7 @@ class ModuleList2 extends React.Component{
 
 
     // all render functions only takes single element
+    // btn-block: take entire place of the page.
     render(){
         return (
             <div>
@@ -44,6 +45,11 @@ class ModuleList2 extends React.Component{
                 <input className="form-control"
                        onChange={this.titleChanged}
                        placeholder="title"/>
+
+                <button className="btn btn-primary btn-block">
+                    <i className="fa fa-plus"></i>
+                </button>
+
 
                 <ul className="list-group">
                 {this.renderListOfModules()}
