@@ -3,12 +3,15 @@ import React, {Component} from 'react'
 import CourseCard from '../components/CourseCard'
 import ModuleList from './ModuleList'
 import LessonTabs from './LessonTabs'
+import CourseEditor from './CourseEditor'
+
 export default class CourseManager extends Component{
     render(){
         return( // a bootstrap class
             // className="card-deck: This part could be assigned as another container.js
             <div className="container-fluid">
                 <h1>Course Manager</h1>
+                <CourseEditor/>
                 <LessonTabs/>
                 <ModuleList/>
                 <div className="card-deck">
