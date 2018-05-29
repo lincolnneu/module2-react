@@ -19,13 +19,9 @@ class ModuleList2 extends React.Component{
     }
 
     renderListOfModules(){
-        let modules = <div>
-            <ModuleListItem title="React Module"/>
-            <ModuleListItem title="Redux"/>
-            <ModuleListItem title="React Native"/>
-            <ModuleListItem title="Angular"/>
-            <Stateless message={"this is a stateless component"}/>
-        </div>;
+        let modules = this.state.modules.map(function(module){
+            return <ModuleListItem title="asdasdasdsa"/>
+        })
             return modules;
     }
 

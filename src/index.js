@@ -10,8 +10,11 @@ import Stateless from './components/Stateless'
 import ModuleListItem from "./components/ModuleListItem";
 import ModuleList2 from "./containers/ModuleList2"
 
-
+// className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
-    <ModuleList2/>,
+    <div className={"container-fluid"}>
+        <ModuleList2/>
+        <Stateless message={"this is a stateless component"}/>
+    </div>,
     document.getElementById('root') // default id is root
 ); // render function can only have single element. More elements can be rendered inside div.
