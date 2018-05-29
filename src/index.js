@@ -6,7 +6,8 @@ import CourseManager from './containers/CourseManager';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Hello from './components/Hello'
+import Stateless from './components/Stateless'
 ReactDOM.render(
-    <Hello message={"life is good"}/>,
+    <Stateless message={"this is a stateless component"}/>,
     document.getElementById('root') // default id is root
 );
