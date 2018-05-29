@@ -1,12 +1,12 @@
 import React from 'react'
 import ModuleListItem from '../components/ModuleListItem'
-import Stateless from "../components/Stateless";
 
 class ModuleList2 extends React.Component{
 
     constructor(){
         super();
         this.state = {
+            module: { title: '' },
             modules: [
                 {title : 'Module 1 - jQuery', id: 123},
                 {title : 'Module 2 - React', id: 234},
@@ -16,7 +16,16 @@ class ModuleList2 extends React.Component{
                 {title : 'Module 6 - MongoDB', id: 678}
             ]
         };
+
+        this.titleChanged = this.titleChanged.bind(this); // listener to the event.
+
     }
+
+    titleChanged(event){
+        console.log(event.target.value);
+        this.setState({module: {title: event.target.value}}); // a function from Component. Allows you to change this.state.
+
+    } // show content in the input form live.
 
     renderListOfModules(){
         let modules = this.state.modules.map(function(module){
@@ -32,7 +41,9 @@ class ModuleList2 extends React.Component{
         return (
             <div>
                 <br/>
-                <input className="form-control" placeholder="title"/>
+                <input className="form-control"
+                       onChange={this.titleChanged}
+                       placeholder="title"/>
 
                 <ul className="list-group">
                 {this.renderListOfModules()}

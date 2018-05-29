@@ -9,6 +9,7 @@ import Hello from './components/Hello'
 import Stateless from './components/Stateless'
 import ModuleListItem from "./components/ModuleListItem";
 import ModuleList2 from "./containers/ModuleList2"
+// import ModuleList from "./containers/ModuleList"
 
 // className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
