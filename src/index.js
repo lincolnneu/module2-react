@@ -8,12 +8,10 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Hello from './components/Hello'
 import Stateless from './components/Stateless'
 import ModuleListItem from "./components/ModuleListItem";
+import ModuleList2 from "./containers/ModuleList2"
+
+
 ReactDOM.render(
-    <div>
-        <ModuleListItem title="React Module"/>
-        <ModuleListItem title="Redux"/>
-        <ModuleListItem title="React Native"/>
-        <Stateless message={"this is a stateless component"}/>
-    </div>,
+    <ModuleList2/>,
     document.getElementById('root') // default id is root
 ); // render function can only have single element. More elements can be rendered inside div.
