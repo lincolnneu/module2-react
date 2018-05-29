@@ -31,7 +31,9 @@ class ModuleList2 extends React.Component{
     render(){
         return (
             <div>
-            {this.renderListOfModules()}
+                <ul className="list-group">
+                {this.renderListOfModules()}
+                </ul>
             </div>
         )
     }
