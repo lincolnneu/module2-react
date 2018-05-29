@@ -31,6 +31,9 @@ class ModuleList2 extends React.Component{
     render(){
         return (
             <div>
+                <br/>
+                <input className="form-control" placeholder="title"/>
+
                 <ul className="list-group">
                 {this.renderListOfModules()}
                 </ul>
