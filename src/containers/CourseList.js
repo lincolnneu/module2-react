@@ -11,6 +11,10 @@ class CourseList extends React.Component{
     }
 
     componentDidMount(){ // data is ready to render. Before rendering, what's your last word?
+        this.findAllCourses();
+    }
+
+    findAllCourses(){
         this.courseService
             .findAllCourses()
             .then((courses) => {
@@ -21,7 +25,8 @@ class CourseList extends React.Component{
 
     renderCourseRows(){
         let courses = null;
-
+        console.log("render course rows");
+        console.log(this.state);
         if(this.state){
             courses = this.state.courses.map(
                 function(course){
@@ -36,10 +41,14 @@ class CourseList extends React.Component{
     }
 
     titleChanged(event){ // event is a standard signature for this event handlers when infrastructure passes the event originated when the event occur. We need a reference back to the input field.
-        console.log("titleChanged");
+        this.setState({ // accumulate the event to save the key into title.
+            course: { title: event.target.value }
+        });
     }
     createCourse(){
-        console.log("createCourse button pressed");
+        this.courseService
+            .createCourse(this.state.course)
+            .then(() => { this.findAllCourses();}); // refresh after pressing createCourse button
     }
 
     render(){
@@ -49,10 +58,12 @@ class CourseList extends React.Component{
                 <table className="table">
                     <thead>
                         <tr><th>Title</th></tr>
-                        <th><input onChange={this.titleChanged}
-                            className="form-control" id="titleFld" placeholder="cs101"/></th>
-                        <th><button onClick={this.createCourse}
-                            className="btn btn-primary">Add</button></th>
+                        <tr>
+                            <th><input onChange={this.titleChanged}
+                                className="form-control" id="titleFld" placeholder="cs101"/></th>
+                            <th><button onClick={this.createCourse}
+                                className="btn btn-primary">Add</button></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {this.renderCourseRows()}
