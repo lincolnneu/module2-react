@@ -17,6 +17,22 @@ class CourseList extends React.Component{
             })
     }
 
+    renderCourseRows(){
+        let courses = null;
+
+        if(this.state){
+            courses = this.state.courses.map(
+                function(course){
+                    return <CourseRow key={course.id} course={course}/>
+                }
+            )
+        }
+
+        return (
+            courses
+        )
+    }
+
     render(){
         return(
             <div>
@@ -24,12 +40,7 @@ class CourseList extends React.Component{
                 <table className="table">
                     <thead><tr><th>Title</th></tr></thead>
                     <tbody>
-                        <CourseRow/>
-                        <CourseRow/>
-                        <CourseRow/>
-                        <CourseRow/>
-                        <CourseRow/>
-                        <CourseRow/>
+                        {this.renderCourseRows()}
                     </tbody>
                 </table>
             </div>
