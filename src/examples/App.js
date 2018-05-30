@@ -11,16 +11,63 @@ const Page2 = () => {
 };
 // but only App will be visible outside.
 
+const PageParam = ({match}) =>{
+    return(
+        <h2>PageParam {match.params.id}</h2>
+    )
+};
+
+class PageUpdate extends React.Component { // for stateful, maintain state.
+    constructor(props){
+        super(props);
+
+        this.updatePage = this.updatePage.bind(this);// an event handler
+        this.state = {
+            id: ''
+        }
+    }// status info can only come from constructor.
+
+    componentDidMount(){
+        this.updatePage(this.props.match.params.id);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.updatePage(newProps.match.params.id);
+    }
+
+    updatePage(id){ // meet the id that is passed as an argument and then it updates the state.
+        this.setState({id: id});
+    }
+
+    render(){
+        return(
+            <h2>PageUpdate
+                {this.state.id}
+            </h2>
+        );
+    }
+}
+
+
+
 const App = () => {
     return (
         <Router>
             <div>
                 <Link to="/hello">Hello</Link> |
                 <Link to="/page1">Page 1</Link> |
-                <Link to="/page2">Page 2</Link>
+                <Link to="/page2">Page 2</Link> |
+                <Link to="/pageParam/123">Page 123</Link> |
+                <Link to="/pageParam/234">Page 234</Link> |
+
+                <Link to="/pageUpdate/345">PageUpdate 345</Link> |
+                <Link to="/pageUpdate/456">PageUpdate 456</Link> |
+                <Route path='/pageUpdate/:id' component={PageUpdate} />
+
                 <Route path='/hello' component={Hello} /> {/*<!-- If path is /hello, go to Hello component-> */}
                 <Route path='/page1' component={Page1} />
                 <Route path='/page2' component={Page2} />
+                <Route path='/pageParam/:id' component={PageParam} /> {/* means id is not hard coded. If you see the following url pattern, bind it to a variable called id, and pass it to component PageParam.*/}
             </div>
         </Router>
     );
