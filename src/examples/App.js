@@ -1,7 +1,10 @@
 import React from 'react'
 import Hello from '../components/Hello'
+import {BrowserRouter as Router} from 'react-router-dom'
+
+
 const App = () => {
-    return (<Hello message="This is the message"/>);
+    return (<Router></Router>);
 };
 
 export default App;
