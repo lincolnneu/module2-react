@@ -16,7 +16,7 @@ import App from "./examples/App"
 ReactDOM.render(
     <div className={"container-fluid"}>
         <App/>
-        {/*<ModuleList2/>*/}
+        <CourseManager/>
         {/*<Stateless message={"this is a stateless component"}/>*/}
     </div>,
     document.getElementById('root') // default id is root
