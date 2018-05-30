@@ -5,7 +5,7 @@ export default class LessonTabs
     render(){
         return (
             <ul className="nav nav-tabs">
-                <li className="nav-item"><a class="nav-link active"
+                <li className="nav-item"><a className="nav-link active"
                         href="#">Active Tab</a></li>
                 <li className="nav-item"><a className="nav-link"
                         href="#">Another Tab</a></li>

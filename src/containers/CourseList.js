@@ -1,9 +1,22 @@
 import React from 'react'
 import CourseRow from "../components/CourseRow";
+import CourseService from "../services/CourseServices"
+
 class CourseList extends React.Component{
-    constructor(){ // dummy constructor doesn't do anything
+    constructor(){
         super();
+        this.courseService = CourseService.instance;
     }
+
+    componentDidMount(){ // data is ready to render. Before rendering, what's your last word?
+        this.courseService
+            .findAllCourses()
+            .then((courses) => {
+                console.log(courses);
+                this.setState({courses: courses});
+            })
+    }
+
     render(){
         return(
             <div>
