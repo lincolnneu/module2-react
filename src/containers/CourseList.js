@@ -38,7 +38,11 @@ class CourseList extends React.Component{
             <div>
                 <h2>Course List</h2>
                 <table className="table">
-                    <thead><tr><th>Title</th></tr></thead>
+                    <thead>
+                        <tr><th>Title</th></tr>
+                        <th><input className="form-control" id="titleFld" placeholder="cs101"/></th>
+                        <th><button className="btn btn-primary">Add</button></th>
+                    </thead>
                     <tbody>
                         {this.renderCourseRows()}
                     </tbody>
