@@ -1,5 +1,7 @@
 import React from 'react'
 import ModuleListItem from '../components/ModuleListItem'
+import ModuleService from '../services/ModuleService'
+
 
 class ModuleList extends React.Component {
 
@@ -21,6 +23,7 @@ class ModuleList extends React.Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
+        this.moduleService = ModuleService.instance; // once we have the instance we can call it in the createModule.
 
     }
 
@@ -39,6 +42,7 @@ class ModuleList extends React.Component {
 
     createModule(event) {
         console.log(this.state.module);
+        this.moduleService.createModule(this.props.courseId, this.state.module);
     }
 
     titleChanged(event) {
