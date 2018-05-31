@@ -1,11 +1,11 @@
 let _singleton = Symbol();
 const COURSE_API_URL = 'http://localhost:8080/api/course';
-class CourseService {
+class CourseServiceClient {
     constructor(singletonToken){
         if(_singleton !== singletonToken) throw new Error('Cannot instantiate directly');
     }
     static get instance(){
-        if(!this[_singleton]) this[_singleton] = new CourseService(_singleton);
+        if(!this[_singleton]) this[_singleton] = new CourseServiceClient(_singleton);
         return this[_singleton];
     }
 
@@ -25,18 +25,14 @@ class CourseService {
             method: 'POST'
         }).then(function (response){
             return response.json();
-        })
+        });
     }
 
     deleteCourse(courseId){
         return fetch(COURSE_API_URL + '/' + courseId, {
-            body: JSON.stringify(courseId),
-            headers: {
-                'Content-Type': 'application/json'
-            },
             method: 'DELETE'
-        })
+        });
     }
 
 }
-export default CourseService;
+export default CourseServiceClient;
