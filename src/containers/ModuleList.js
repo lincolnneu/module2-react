@@ -27,6 +27,15 @@ class ModuleList extends React.Component {
 
     }
 
+    setModules(modules){
+        this.setState({modules: modules});
+    }
+
+    findAllModulesForCourse(courseId){
+        this.moduleService.findAllModulesForCourse(courseId)
+            .then((modules) => {this.setModules(modules)});
+    }
+
     setCourseId(courseId){
         this.setState({courseId: courseId});
     }
@@ -37,6 +46,7 @@ class ModuleList extends React.Component {
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
+        this.findAllModulesForCourse(newProps.courseId);
     }
 
 

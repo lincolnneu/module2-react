@@ -8,6 +8,15 @@ export default class ModuleService { // this service is a singleton
         }
     }
 
+    findAllModulesForCourse(courseId){
+        return fetch(
+            MODULE_API_URL.replace('CID', courseId))
+                .then(function(response){
+                    return response.json();
+                });
+    }
+
+
     createModule(courseId, module){
         return fetch(MODULE_API_URL.replace('CID', courseId),{ // CID is a place holder
             body: JSON.stringify(module),
