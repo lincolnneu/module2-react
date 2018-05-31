@@ -8,14 +8,13 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Hello from './components/Hello'
 import Stateless from './components/Stateless'
 import ModuleListItem from "./components/ModuleListItem";
-import ModuleList2 from "./containers/ModuleList2"
 // import ModuleList from "./containers/ModuleList"
 import App from "./examples/App"
 
 // className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
     <div className={"container-fluid"}>
-        <App/>
+        {/*<App/>*/}
         <CourseManager/>
         {/*<Stateless message={"this is a stateless component"}/>*/}
     </div>,

@@ -3,8 +3,10 @@ import ModuleListItem from '../components/ModuleListItem'
 
 class ModuleList extends React.Component {
 
-    constructor() { super();
+    constructor(props) {
+        super(props);
         this.state = {
+            courseId: '',
             module: { title: '' },
             modules: [
                 {title: 'Module 1 - jQuery', id: 123},
@@ -18,7 +20,22 @@ class ModuleList extends React.Component {
 
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+
     }
+
+    setCourseId(courseId){
+        this.setState({courseId: courseId});
+    }
+
+    componentDidMount(){
+        this.setCourseId(this.props.courseId);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setCourseId(newProps.courseId);
+    }
+
 
     createModule(event) {
         console.log(this.state.module);
@@ -39,6 +56,7 @@ class ModuleList extends React.Component {
     render() {
         return(
             <div>
+                <h3>Module List for course: {this.state.courseId}</h3>
                 <br/>
                 <input className="form-control"
                        onChange={this.titleChanged}
