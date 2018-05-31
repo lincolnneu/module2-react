@@ -8,6 +8,8 @@ class CourseList extends React.Component{
         this.courseService = CourseService.instance;
         this.titleChanged = this.titleChanged.bind(this); // bind these methods to this component in constructor.
         this.createCourse = this.createCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
+
     }
 
     componentDidMount(){ // data is ready to render. Before rendering, what's your last word?
@@ -25,14 +27,15 @@ class CourseList extends React.Component{
 
     renderCourseRows(){
         let courses = null;
+        let me = this;
         console.log("render course rows");
         console.log(this.state);
         if(this.state){
             courses = this.state.courses.map(
                 function(course){
-                    return <CourseRow key={course.id} course={course}/>
+                    return <CourseRow key={course.id} course={course} deleteCourse={me.deleteCourse}/>
                 }
-            )
+            );
         }
 
         return (
@@ -49,6 +52,13 @@ class CourseList extends React.Component{
         this.courseService
             .createCourse(this.state.course)
             .then(() => { this.findAllCourses();}); // refresh after pressing createCourse button
+    }
+
+    deleteCourse(courseId){
+        console.log("deleting" + courseId);
+        this.courseService
+            .deleteCourse(courseId)
+            .then(() => { this.findAllCourses();});
     }
 
     render(){
