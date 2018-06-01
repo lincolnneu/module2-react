@@ -1,6 +1,6 @@
 import React from 'react'
 import ModuleListItem from '../components/ModuleListItem'
-import ModuleService from '../services/ModuleService'
+import ModuleServiceClient from '../services/ModuleServiceClient'
 
 
 class ModuleList extends React.Component {
@@ -23,7 +23,8 @@ class ModuleList extends React.Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
-        this.moduleService = ModuleService.instance; // once we have the instance we can call it in the createModule.
+        this.deleteModule = this.deleteModule.bind(this);
+        this.moduleService = ModuleServiceClient.instance; // once we have the instance we can call it in the createModule.
 
     }
 
@@ -52,8 +53,18 @@ class ModuleList extends React.Component {
 
     createModule(event) {
         console.log(this.state.module);
-        this.moduleService.createModule(this.props.courseId, this.state.module);
+        this.moduleService
+            .createModule(this.props.courseId, this.state.module)
+            .then(() => { this.findAllModulesForCourse(this.props.courseId);});
     }
+
+    deleteModule(moduleId) {
+        console.log(moduleId);
+        this.moduleService
+            .deleteModule(moduleId)
+            .then(() => { this.findAllModulesForCourse(this.props.courseId);});
+    }
+
 
     titleChanged(event) {
         console.log(event.target.value);
@@ -61,8 +72,9 @@ class ModuleList extends React.Component {
     }
 
     renderListOfModules() {
+        let me = this;
         let modules = this.state.modules.map(function (module) {
-            return <ModuleListItem key={module.id} title={module.title}/>
+            return <ModuleListItem key={module.id} title={module.title} module={module} deleteModule={me.deleteModule}/>
         })
         return modules;
     }
