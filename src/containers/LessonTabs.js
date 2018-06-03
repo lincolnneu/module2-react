@@ -55,8 +55,8 @@ export default class LessonTabs
 
 
     createLesson(event) {
-        if(this.state.lesson.title == ''){
-            this.state.lesson.title = "new lesson";
+        if(this.state.lesson.title === ''){
+            this.setState({lesson:{title:"new lesson"}});
         }
         this.lessonService
             .createLesson(this.props.courseId,this.props.moduleId, this.state.lesson)

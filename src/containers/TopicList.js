@@ -60,8 +60,10 @@ export default class TopicList
         this.findAllTopicsForLesson(newProps.courseId,newProps.moduleId,newProps.lessonId);
     }
 
-
     createTopic(event) {
+        if(this.state.topic.title === ''){
+            this.setState({topic:{title: "new module"}});
+        }
         this.topicService
             .createTopic(this.props.courseId,this.props.moduleId, this.props.lessonId, this.state.topic)
             .then(() => { this.findAllTopicsForLesson(this.props.courseId,this.props.moduleId, this.props.lessonId);});

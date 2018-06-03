@@ -1,13 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import CourseCard from "./CourseCard";
 
 export default class TopicPill extends React.Component{
-    constructor(props){
-        super(props);
-    }
-
-
     render(){
         let me = this;
         return( // return jsx declaration

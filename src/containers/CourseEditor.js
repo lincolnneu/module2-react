@@ -1,7 +1,6 @@
 import React from 'react'
 import ModuleList from './ModuleList'
-import LessonTabs from './LessonTabs'
-
+import CourseServiceClient from "../services/CourseServiceClient";
 
 export default class CourseEditor
     extends React.Component{
@@ -9,6 +8,7 @@ export default class CourseEditor
         super(props);
         this.state = {courseId: ''};
         this.selectCourse = this.selectCourse.bind(this);
+        this.courseService = CourseServiceClient.instance;
     }
 
     componentDidMount(){// set course id. When it loads, we parse the parameter. When the component did mount, we call select and extract id.
@@ -24,7 +24,6 @@ export default class CourseEditor
         return (
             <div>
                 <h2>Editing course: {this.state.courseId}</h2>
-
                     <div>
                         <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
                     </div>

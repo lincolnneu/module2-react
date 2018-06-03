@@ -3,7 +3,6 @@ import ModuleListItem from '../components/ModuleListItem'
 import ModuleServiceClient from '../services/ModuleServiceClient'
 import ModuleEditor from './ModuleEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import LessonEditor from "./LessonEditor";
 
 class ModuleList extends React.Component {
 
@@ -47,8 +46,8 @@ class ModuleList extends React.Component {
 
 
     createModule(event) {
-        if(this.state.module.title == ''){
-            this.state.module.title = "new module";
+        if(this.state.module.title === ''){
+            this.setState({module:{title: "new module"}});
         }
         this.moduleService
             .createModule(this.props.courseId, this.state.module)

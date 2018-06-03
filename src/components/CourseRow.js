@@ -12,7 +12,7 @@ class CourseRow extends React.Component{
         let me = this;
         let u = this.props.course.owner;
         let curU = this.props.curU;
-        if(u == curU){
+        if(u === curU){
             u = "me";
         }
         return (
