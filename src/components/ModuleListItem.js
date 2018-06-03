@@ -17,8 +17,6 @@ export default class ModuleListItem extends React.Component{
 
             <span className="float-right">
                 <i onClick={function(){
-                    console.log("x is clicked");
-                    console.log(me.props.module.id);
                     me.props.deleteModule(me.props.module.id);
                 }}
                    className="fa fa-times"></i>

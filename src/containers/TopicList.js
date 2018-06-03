@@ -96,7 +96,7 @@ export default class TopicList
         return (
             <Router>
                 <div>
-                    <h2>In TopicList: Editing lesson: {this.props.lessonId}</h2>
+                    <h2>In TopicList: Editing lesson: {this.props.lessonId} Its Module is: {this.props.moduleId}</h2>
                     <br/>
                     <div className="row">
                         <div>

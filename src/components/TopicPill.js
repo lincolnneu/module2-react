@@ -20,13 +20,6 @@ export default class TopicPill extends React.Component{
                         <i onClick={function(){me.props.deleteTopic(me.props.topic.id);}} className="fa fa-times"></i>
                     </span>
                 </li>
-
-                <CourseCard/>
-                <CourseCard/>
-                <CourseCard/>
-                <CourseCard/>
-                <CourseCard/>
-                <CourseCard/>
             </div>
         );
     }

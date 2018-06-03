@@ -3,6 +3,7 @@ import ModuleListItem from '../components/ModuleListItem'
 import ModuleServiceClient from '../services/ModuleServiceClient'
 import ModuleEditor from './ModuleEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import LessonEditor from "./LessonEditor";
 
 class ModuleList extends React.Component {
 
@@ -46,17 +47,22 @@ class ModuleList extends React.Component {
 
 
     createModule(event) {
-        console.log(this.state.module);
+        if(this.state.module.title == ''){
+            this.state.module.title = "new module";
+        }
         this.moduleService
             .createModule(this.props.courseId, this.state.module)
             .then(() => { this.findAllModulesForCourse(this.props.courseId);});
     }
 
     deleteModule(moduleId) {
-        console.log(moduleId);
-        this.moduleService
-            .deleteModule(moduleId)
-            .then(() => { this.findAllModulesForCourse(this.props.courseId);});
+        let confirmation= window.confirm(`You're about to delete module #${moduleId}, are you sure?`);
+        if(confirmation){
+            this.moduleService
+                .deleteModule(moduleId)
+                .then(() => { this.findAllModulesForCourse(this.props.courseId);});
+        }
+
     }
 
 
@@ -97,6 +103,7 @@ class ModuleList extends React.Component {
                             <Route path="/course/:courseId/module/:moduleId/edit"
                                     component={ModuleEditor}>
                             </Route>
+
                         </div>
                     </div>
 
