@@ -9,6 +9,14 @@ class CourseServiceClient {
         return this[_singleton];
     }
 
+    getCurUser(){
+        return fetch(COURSE_API_URL.replace('course','curUser'))
+            .then(function(response){
+                return response.json();
+            });
+
+    }
+
     findAllCourses(){
         return fetch(COURSE_API_URL)
             .then(function(response){
@@ -19,6 +27,7 @@ class CourseServiceClient {
     createCourse(course){
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },

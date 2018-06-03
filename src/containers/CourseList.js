@@ -2,6 +2,8 @@ import React from 'react'
 import CourseRow from "../components/CourseRow";
 import CourseServiceClient from "../services/CourseServiceClient"
 
+let curU = null;
+
 class CourseList extends React.Component{
     constructor(){
         super();
@@ -13,14 +15,20 @@ class CourseList extends React.Component{
     }
 
     componentDidMount(){ // data is ready to render. Before rendering, what's your last word?
-        this.findAllCourses();
+        this.courseService
+            .getCurUser()
+            .then(
+                data=>{
+                    curU = data;
+                    this.findAllCourses()
+                }
+            );
     }
 
     findAllCourses(){
         this.courseService
             .findAllCourses()
             .then((courses) => {
-                console.log(courses);
                 this.setState({courses: courses});
             })
     }
@@ -28,26 +36,31 @@ class CourseList extends React.Component{
     renderCourseRows(){
         let courses = null;
         let me = this;
-        console.log("render course rows");
-        console.log(this.state);
-        if(this.state){
-            courses = this.state.courses.map(
+
+        if(me.state){
+            courses = me.state.courses.map(
                 function(course){
-                    return <CourseRow key={course.id} course={course} deleteCourse={me.deleteCourse}/>
+                    return <CourseRow key={course.id} curU={curU.username} course={course} deleteCourse={me.deleteCourse}/>
                 }
             );
         }
-
         return (
             courses
         )
+
     }
 
     titleChanged(event){ // event is a standard signature for this event handlers when infrastructure passes the event originated when the event occur. We need a reference back to the input field.
         this.setState({ // accumulate the event to save the key into title.
-            course: { title: event.target.value }
+            course: {
+                title: event.target.value,
+                owner: '',
+                created: Date.now(),
+                modified: Date.now()
+            }
         });
     }
+
     createCourse(){
         this.courseService
             .createCourse(this.state.course)
