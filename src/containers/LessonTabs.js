@@ -55,17 +55,23 @@ export default class LessonTabs
 
 
     createLesson(event) {
-        console.log(this.state.lesson);
+        if(this.state.lesson.title == ''){
+            this.state.lesson.title = "new lesson";
+        }
         this.lessonService
             .createLesson(this.props.courseId,this.props.moduleId, this.state.lesson)
             .then(() => { this.findAllLessonsForModule(this.props.courseId,this.props.moduleId);});
     }
 
     deleteLesson(lessonId) {
-        console.log(lessonId);
-        this.lessonService
-            .deleteLesson(lessonId)
-            .then(() => { this.findAllLessonsForModule(this.props.courseId,this.props.moduleId);});
+        let confirmation= window.confirm(`You're about to delete lesson #${lessonId}, are you sure?`);
+        if(confirmation) {
+            this.lessonService
+                .deleteLesson(lessonId)
+                .then(() => {
+                    this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
+                });
+        }
     }
 
 
