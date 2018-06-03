@@ -1,15 +1,121 @@
-import React from 'react'
+import React from 'react';
+import LessonTabsItem from "../components/LessonTabsItem";
+import LessonServiceClient from "../services/LessonServiceClient";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import LessonEditor from "./LessonEditor";
 
 export default class LessonTabs
     extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            courseId: '',
+            moduleId: '',
+            lesson: { title: '' },
+            lessons: []
+        };
+
+        this.titleChanged = this.titleChanged.bind(this);
+        this.createLesson = this.createLesson.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+        this.setModuleId = this.setModuleId.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
+        this.lessonService = LessonServiceClient.instance; // once we have the instance we can call it in the createModule.
+
+    }
+
+    setLessons(lessons){
+        this.setState({lessons: lessons});
+    }
+
+    findAllLessonsForModule(courseId,moduleId){
+        this.lessonService.findAllLessonsForModule(courseId,moduleId)
+            .then((lessons) => {this.setLessons(lessons)});
+    }
+
+    setCourseId(courseId){
+        this.setState({courseId: courseId});
+    }
+
+    setModuleId(moduleId){
+        this.setState({moduleId: moduleId});
+    }
+
+    componentDidMount(){
+        this.setCourseId(this.props.courseId);
+        this.setModuleId(this.props.moduleId);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setCourseId(this.props.courseId);
+        this.setModuleId(this.props.moduleId);
+        this.findAllLessonsForModule(newProps.courseId,newProps.moduleId);
+    }
+
+
+    createLesson(event) {
+        console.log(this.state.lesson);
+        this.lessonService
+            .createLesson(this.props.courseId,this.props.moduleId, this.state.lesson)
+            .then(() => { this.findAllLessonsForModule(this.props.courseId,this.props.moduleId);});
+    }
+
+    deleteLesson(lessonId) {
+        console.log(lessonId);
+        this.lessonService
+            .deleteLesson(lessonId)
+            .then(() => { this.findAllLessonsForModule(this.props.courseId,this.props.moduleId);});
+    }
+
+
+    titleChanged(event) {
+        console.log(event.target.value);
+        this.setState({lesson: {title: event.target.value}});
+    }
+
+    renderListOfLessons() {
+        let me = this;
+        let lessons = this.state.lessons.map(function (lesson) {
+            return (
+                    <LessonTabsItem key={lesson.id} title={lesson.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lesson={lesson} deleteLesson={me.deleteLesson}/>
+            )
+        });
+        return lessons;
+    }
+
+
+
     render(){
         return (
-            <ul className="nav nav-tabs">
-                <li className="nav-item"><a className="nav-link active"
-                        href="#">Active Tab</a></li>
-                <li className="nav-item"><a className="nav-link"
-                        href="#">Another Tab</a></li>
-            </ul>
+            <Router>
+                <div>
+                    <h2>In LessonTabs: Editing module: {this.props.moduleId}</h2>
+                    <br/>
+                    <div className="row">
+                        <div>
+                            <input className="form-control"
+                                   onChange={this.titleChanged}
+                                   placeholder="title"/>
+
+                            <button onClick={this.createLesson} className="btn btn-primary btn-block">
+                                <i className="fa fa-plus"></i>
+                            </button>
+
+                            <ul className="list-group">
+                                <ul className="nav nav-tabs">
+                                    {this.renderListOfLessons()}
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/edit"
+                           component={LessonEditor} >
+
+                    </Route>
+                </div>
+            </Router>
         );
     }
 }
