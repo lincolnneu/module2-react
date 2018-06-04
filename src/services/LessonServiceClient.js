@@ -28,10 +28,6 @@ export default class LessonServiceClient { // this service is a singleton
     }
 
     deleteLesson(lessonId){
-        console.log("31 deleting course")
-        console.log(lessonId)
-        console.log("the api url is")
-        console.log(LESSON_API_URL.replace('course/CID/module/MID/', '') + '/' + lessonId)
         return fetch(LESSON_API_URL.replace('course/CID/module/MID/', '') + '/' + lessonId, {
             method: 'DELETE'
         }).then(function(response){

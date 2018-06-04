@@ -94,8 +94,12 @@ export default class LessonTabs
             this.lessonService
                 .deleteLesson(lessonId)
                 .then(() => {
-                    this.sleep(2000);
-                    this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
+                    this.sleep(1000);
+                    this.findAllLessonsForModule(this.props.courseId, this.props.moduleId)
+                        .catch((err)=>{
+                            console.log(err);
+                        })
+                    ;
                 })
             };
         // }
