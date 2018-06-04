@@ -23,6 +23,7 @@ export default class LessonTabs
         this.setModuleId = this.setModuleId.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
         this.setCurLessonId = this.setCurLessonId.bind(this);
+        this.checkTitleNull = this.checkTitleNull(this);
         this.lessonService = LessonServiceClient.instance; // once we have the instance we can call it in the createModule.
 
     }
@@ -62,11 +63,16 @@ export default class LessonTabs
         this.findAllLessonsForModule(newProps.courseId,newProps.moduleId);
     }
 
+    checkTitleNull(event) {
+        if(this.state.lesson.title === ''){
+            this.setState({lesson:{title: "new lesson"}});
+            this.state.lesson.title = "new lesson";
+        }
+        return Promise.resolve(event);
+    }
+
 
     createLesson(event) {
-        if(this.state.lesson.title === ''){
-            this.setState({lesson:{title:"new lesson"}});
-        }
         this.lessonService
             .createLesson(this.props.courseId,this.props.moduleId, this.state.lesson)
             .then(() => { this.findAllLessonsForModule(this.props.courseId,this.props.moduleId);});
@@ -105,13 +111,20 @@ export default class LessonTabs
 
 
     render(){
+        let me = this;
         return (
 
                 <div className="container">
                     <div className="row">
                         <div>
                             <input className="form-control"
-                                   onChange={this.titleChanged}
+                                   onChange={
+                                       (event)=>{
+                                           me.checkTitleNull(event)
+                                               .then(me.createLesson);
+                                       }
+
+                                   }
                                    placeholder="title"/>
 
                             <button onClick={this.createLesson} className="btn btn-primary btn-block">
