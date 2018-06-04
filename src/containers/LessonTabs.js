@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonTabsItem from "../components/LessonTabsItem";
 import LessonServiceClient from "../services/LessonServiceClient";
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Route} from 'react-router-dom'
 import LessonEditor from "./LessonEditor";
 
 export default class LessonTabs
@@ -23,7 +23,6 @@ export default class LessonTabs
         this.setModuleId = this.setModuleId.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
         this.setCurLessonId = this.setCurLessonId.bind(this);
-        this.checkTitleNull = this.checkTitleNull(this);
         this.lessonService = LessonServiceClient.instance; // once we have the instance we can call it in the createModule.
 
     }
@@ -65,8 +64,9 @@ export default class LessonTabs
 
     checkTitleNull(event) {
         if(this.state.lesson.title === ''){
-            this.setState({lesson:{title: "new lesson"}});
-            this.state.lesson.title = "new lesson";
+            let defName = 'new lesson';
+            this.setState({lesson : {title: defName}});
+            this.state.lesson.title = defName;
         }
         return Promise.resolve(event);
     }
@@ -98,7 +98,7 @@ export default class LessonTabs
         let me = this;
         let lessons = this.state.lessons.map(function (lesson) {
             let at = '';
-            if(me.state.curLessonId == lesson.id){
+            if(me.state.curLessonId === lesson.id){
                 at = 'show';
             }
             return (
@@ -117,27 +117,23 @@ export default class LessonTabs
                 <div className="container">
                     <div className="row">
                         <div>
-                            <input className="form-control"
-                                   onChange={
-                                       (event)=>{
-                                           me.checkTitleNull(event)
-                                               .then(me.createLesson);
-                                       }
-
-                                   }
-                                   placeholder="title"/>
-
-                            <button onClick={this.createLesson} className="btn btn-primary btn-block">
+                            <input className="form-control" onChange={me.titleChanged} placeholder="title"/>
+                            <button onClick={
+                                (event)=>{
+                                me.checkTitleNull(event)
+                                    .then(me.createLesson);
+                            }}
+                                    className="btn btn-primary btn-block">
                                 <i className="fa fa-plus"></i>
                             </button>
-
+                            </div>
                             <ul className="list-group">
                                 <ul className="nav nav-tabs">
                                     {this.renderListOfLessons()}
                                 </ul>
                             </ul>
                         </div>
-                    </div>
+
 
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                            component={LessonEditor} >
