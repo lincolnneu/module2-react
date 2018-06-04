@@ -41,7 +41,12 @@ export default class CourseEditor
     render(){
         return (
             <div>
-                <h2>Editing course: {this.state.course.title}</h2>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top box-shadow">
+                    <div className="container d-flex justify-content-between">
+                        <a className="navbar-brand align-items-center d-flex" href="/courses">{this.state.course.title}</a>
+                    </div>
+                </nav>
+                <br/>
                     <div>
                         <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
                     </div>

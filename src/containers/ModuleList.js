@@ -84,7 +84,7 @@ class ModuleList extends React.Component {
         let modules = this.state.modules.map(function (module) {
             let at = '';
             if(me.state.curModuleId == module.id){
-                at = 'list-group-item-danger';
+                at = 'bg-success';
             }
             return <ModuleListItem key={module.id} attribute={at} title={module.title} courseId={me.props.courseId} module={module} deleteModule={me.deleteModule}/>
         });
@@ -97,13 +97,14 @@ class ModuleList extends React.Component {
                 <div>
                     <div className="row">
                         <div className="col-4">
-                            <input className="form-control"
-                                   onChange={this.titleChanged}
-                                   placeholder="title"/>
-
                             <button onClick={this.createModule} className="btn btn-primary btn-block">
                                 <i className="fa fa-plus"></i>
                             </button>
+                            <br/>
+
+                            <input className="form-control"
+                                   onChange={this.titleChanged}
+                                   placeholder="title"/>
 
                             <ul className="list-group">
                                 {this.renderListOfModules()}

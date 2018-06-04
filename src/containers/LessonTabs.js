@@ -107,7 +107,7 @@ export default class LessonTabs
     render(){
         return (
 
-                <div>
+                <div className="container">
                     <div className="row">
                         <div>
                             <input className="form-control"

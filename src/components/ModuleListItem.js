@@ -23,9 +23,16 @@ export default class ModuleListItem extends React.Component{
 
     render(){
         let me = this;
+
+        let at = this.state.attribute;
+        if(at === ''){
+            at = 'bg-dark'
+        }
+
         return( // return jsx declaration
-        <li className={`list-group-item ${this.state.attribute}`}>
+        <li className={`list-group-item ${at}`}>
             <Link to = {`/course/${this.props.courseId}/module/${this.props.module.id}`}
+                  style={{ color: '#FFF' }}
             onClick={
                 function reloadPage (){
                     window.location.reload()

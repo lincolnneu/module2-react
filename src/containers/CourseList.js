@@ -2,6 +2,7 @@ import React from 'react'
 import CourseRow from "../components/CourseRow";
 import CourseServiceClient from "../services/CourseServiceClient"
 
+
 class CourseList extends React.Component{
     constructor(){
         super();
@@ -66,14 +67,18 @@ class CourseList extends React.Component{
     render(){
         return(
             <div>
-                <div className="form-group row">
-                    <input onChange={this.titleChanged}
-                           className="form-control col-sm-11" id="titleFld" placeholder="cs101"/>
-                    <i onClick={this.createCourse}
-                       className="fa fa-plus-circle col-sm-1"></i>
-                </div>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                    <a className="navbar-brand" href="/courses">Course Manager</a>
+
+                    <form className="input-group form-inline my-2 my-lg-0">
+                        <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101" aria-label="Search"/>
+                        <button onClick={this.createCourse} className="btn btn-outline-danger my-2 my-sm-0" type="button">+</button>
+                    </form>
+
+                </nav>
+
                 <h2>Course List</h2>
-                <table className="table">
+                <table className="table table-striped">
                     <thead>
                     <tr>
                         <th>Title</th>
