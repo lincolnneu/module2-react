@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonTabsItem from "../components/LessonTabsItem";
 import LessonServiceClient from "../services/LessonServiceClient";
-import {BrowserRouter as Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import LessonEditor from "./LessonEditor";
 
 export default class LessonTabs
@@ -98,7 +98,7 @@ export default class LessonTabs
         let me = this;
         let lessons = this.state.lessons.map(function (lesson) {
             let at = '';
-            if(me.state.curLessonId === lesson.id){
+            if(me.state.curLessonId == lesson.id){
                 at = 'show';
             }
             return (
@@ -115,31 +115,32 @@ export default class LessonTabs
         return (
 
                 <div className="container">
-                        <div>
-                            <form className="input-group form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" onChange={me.titleChanged} placeholder="new lesson"/>
-                                <button onClick={
-                                    (event)=>{
-                                        me.checkTitleNull(event)
-                                            .then(me.createLesson);
-                                    }}
-                                        className="btn btn-primary my-2 my-sm-0">
-                                    <i className="fa fa-plus"></i>
-                                </button>
-                            </form>
-                            <ul className="list-group">
-                                <ul className="nav nav-tabs">
-                                    {this.renderListOfLessons()}
-                                </ul>
-                            </ul>
-                        </div>
+                    <form className="input-group form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" onChange={me.titleChanged} placeholder="new lesson"/>
+                        <button onClick={
+                            (event)=>{
+                                me.checkTitleNull(event)
+                                    .then(me.createLesson);
+                            }}
+                                className="btn btn-primary my-2 my-sm-0">
+                            <i className="fa fa-plus"></i>
+                        </button>
+                    </form>
+                    <ul className="list-group">
+                        <ul className="nav nav-tabs">
+                            {this.renderListOfLessons()}
+                        </ul>
+                    </ul>
 
-
+                    <br/>
+                    <br/>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                           component={LessonEditor} >
-
+                           component={LessonEditor}>
                     </Route>
+
+
                 </div>
+
 
         );
     }

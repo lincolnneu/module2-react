@@ -60,6 +60,15 @@ export default class TopicList
         this.findAllTopicsForLesson(newProps.courseId,newProps.moduleId,newProps.lessonId);
     }
 
+    checkTitleNull(event) {
+        if(this.state.topic.title === ''){
+            let defName = 'new topic';
+            this.setState({topic : {title: defName}});
+            this.state.topic.title = defName;
+        }
+        return Promise.resolve(event);
+    }
+
     createTopic(event) {
         if(this.state.topic.title === ''){
             this.setState({topic:{title: "new module"}});
@@ -70,7 +79,6 @@ export default class TopicList
     }
 
     deleteTopic(topicId) {
-        console.log(topicId);
         this.topicService
             .deleteTopic(topicId)
             .then(() => { this.findAllTopicsForLesson(this.props.courseId,this.props.moduleId, this.props.lessonId);});
@@ -78,7 +86,6 @@ export default class TopicList
 
 
     titleChanged(event) {
-        console.log(event.target.value);
         this.setState({topic: {title: event.target.value}});
     }
 
@@ -95,28 +102,32 @@ export default class TopicList
 
 
     render(){
+        let me = this;
         return (
 
                 <div>
-                    <div className="row">
-                        <div>
-                            <input className="form-control"
-                                   onChange={this.titleChanged}
-                                   placeholder="title"/>
+                    <div>
+                        <form className="input-group form-inline my-2 my-lg-0">
+                            <input className="form-control mr-sm-2" onChange={this.titleChanged}
+                                   placeholder="new topic"/>
 
-                            <button onClick={this.createTopic} className="btn btn-primary btn-block">
+                            <button onClick={
+                                (event)=>{
+                                    me.checkTitleNull(event)
+                                        .then(me.createTopic);
+                                }} className="btn btn-primary my-2 my-sm-0">
                                 <i className="fa fa-plus"></i>
                             </button>
-
+                        </form>
                             <ul className="list-group">
                                 <ul className="nav nav-tabs">
                                     {this.renderListOfTopics()}
                                 </ul>
                             </ul>
-                        </div>
+
                     </div>
 
-                    <Route path=""></Route>
+                    <Route path="#"></Route>
                 </div>
 
         );

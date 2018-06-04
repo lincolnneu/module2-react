@@ -48,7 +48,7 @@ class ModuleList extends React.Component {
     }
 
     componentWillReceiveProps(newProps){
-        this.setCurModuleId();
+        // this.setCurModuleId();
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId);
     }
