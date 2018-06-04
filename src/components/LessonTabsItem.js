@@ -17,10 +17,18 @@ export default class LessonTabsItem extends React.Component{
         this.state.attribute = this.props.attribute;
     }
 
+    sleep(milliseconds) {
+        let start = new Date().getTime();
+        for (let i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+
     componentDidMount(){
         this.setAttribute();
     }
-
 
     render(){
         let me = this;
@@ -32,13 +40,19 @@ export default class LessonTabsItem extends React.Component{
                             window.location.reload()
                         }
                     }>
-                    <span className="nav-link" href="#">
+
+                </li>
+                <span className="nav-link">
                         <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                             {this.props.title}
                         </Link>
-                        <i onClick={function(){me.props.deleteLesson(me.props.lesson.id);}} className="fa fa-times"></i>
+                        <button onClick={function(event){
+                            me.props.deleteLesson(me.props.lesson.id);
+                            me.sleep(2000);
+                            window.location.reload();
+
+                        } } type="button" className="fa fa-times"></button>
                     </span>
-                </li>
             </div>
         );
     }

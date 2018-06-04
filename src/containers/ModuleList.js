@@ -107,7 +107,7 @@ class ModuleList extends React.Component {
                                         .then(me.createModule);
                                 }
 
-                                } className="btn btn-primary btn-block">
+                                } className="btn btn-primary btn-block" type="button">
                                 <i className="fa fa-plus"></i>
                             </button>
                             <br/>

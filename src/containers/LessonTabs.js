@@ -71,6 +71,15 @@ export default class LessonTabs
         return Promise.resolve(event);
     }
 
+    sleep(milliseconds) {
+        let start = new Date().getTime();
+        for (let i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+
 
     createLesson(event) {
         this.lessonService
@@ -80,13 +89,16 @@ export default class LessonTabs
 
     deleteLesson(lessonId) {
         let confirmation= window.confirm(`You're about to delete lesson #${lessonId}, are you sure?`);
+        let me = this;
         if(confirmation) {
             this.lessonService
                 .deleteLesson(lessonId)
                 .then(() => {
+                    this.sleep(2000);
+                }
                     this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
                 });
-        }
+        // }
     }
 
 
@@ -122,7 +134,7 @@ export default class LessonTabs
                                 me.checkTitleNull(event)
                                     .then(me.createLesson);
                             }}
-                                className="btn btn-primary my-2 my-sm-0">
+                                className="btn btn-primary my-2 my-sm-0" type="button">
                             <i className="fa fa-plus"></i>
                         </button>
                     </form>
