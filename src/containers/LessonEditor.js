@@ -1,6 +1,7 @@
 import React from 'react';
 import TopicList from './TopicList';
 
+
 export default class LessonEditor
     extends React.Component{
     constructor(props){
@@ -45,7 +46,6 @@ export default class LessonEditor
     render(){
         return (
             <div>
-                <h2>Editing lesson: {this.state.lessonId} Its Module is: {this.state.moduleId}</h2>
                 <TopicList courseId={this.state.courseId} moduleId={this.state.moduleId} lessonId={this.state.lessonId}/>
             </div>
         )

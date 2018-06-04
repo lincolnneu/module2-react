@@ -1,7 +1,6 @@
 import React from 'react'
 import LessonTabs from './LessonTabs'
 
-
 export default class ModuleEditor
     extends React.Component{
     constructor(props){
@@ -37,7 +36,6 @@ export default class ModuleEditor
     render(){
         return (
             <div>
-                <h2>Editing module: {this.state.moduleId}</h2>
                 <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId}/>
             </div>
         )

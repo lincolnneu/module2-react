@@ -30,7 +30,6 @@ class ModuleList extends React.Component {
 
     setCurModuleId(){
         let curModule = window.location.href.split('/')[6];
-        console.log(curModule);
         this.setState({curModuleId: curModule});
 
     }
@@ -50,6 +49,7 @@ class ModuleList extends React.Component {
     }
 
     componentWillReceiveProps(newProps){
+        this.setCurModuleId();
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId);
     }
@@ -76,7 +76,6 @@ class ModuleList extends React.Component {
 
 
     titleChanged(event) {
-        console.log(event.target.value);
         this.setState({module: {title: event.target.value}});
     }
 
@@ -84,13 +83,8 @@ class ModuleList extends React.Component {
         let me = this;
         let modules = this.state.modules.map(function (module) {
             let at = '';
-            console.log(module);
-            console.log(module.id);
-            console.log(me.state.curModuleId);
             if(me.state.curModuleId == module.id){
                 at = 'list-group-item-danger';
-                console.log("91 oh yeah, that's curModule. Now at is");
-                console.log(at);
             }
             return <ModuleListItem key={module.id} attribute={at} title={module.title} courseId={me.props.courseId} module={module} deleteModule={me.deleteModule}/>
         });
