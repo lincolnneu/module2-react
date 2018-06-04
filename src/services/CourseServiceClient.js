@@ -1,5 +1,6 @@
 let _singleton = Symbol();
-const COURSE_API_URL = 'https://webdev-summer-2018-lincoln.herokuapp.com/api/course';
+const HOST='https://webdev-summer-2018-lincoln.herokuapp.com';
+let COURSE_API_URL = HOST+'/api/course';
 class CourseServiceClient {
     constructor(singletonToken){
         if(_singleton !== singletonToken) throw new Error('Cannot instantiate directly');

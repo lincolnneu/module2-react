@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import CourseServiceClient from "../services/CourseServiceClient"
 
+
 class CourseRow extends React.Component{
     constructor(props){
         super(props);

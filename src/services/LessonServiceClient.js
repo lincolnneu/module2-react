@@ -1,4 +1,5 @@
-const LESSON_API_URL = 'https://webdev-summer-2018-lincoln.herokuapp.com/api/course/CID/module/MID/lesson';
+const HOST='https://webdev-summer-2018-lincoln.herokuapp.com';
+const LESSON_API_URL = HOST+'/api/course/CID/module/MID/lesson';
 
 let _singleton = Symbol();
 export default class LessonServiceClient { // this service is a singleton
@@ -27,8 +28,14 @@ export default class LessonServiceClient { // this service is a singleton
     }
 
     deleteLesson(lessonId){
+        console.log("31 deleting course")
+        console.log(lessonId)
+        console.log("the api url is")
+        console.log(LESSON_API_URL.replace('course/CID/module/MID/', '') + '/' + lessonId)
         return fetch(LESSON_API_URL.replace('course/CID/module/MID/', '') + '/' + lessonId, {
             method: 'DELETE'
+        }).then(function(response){
+            return Promise.resolve(lessonId);
         });
     }
 
