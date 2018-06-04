@@ -94,7 +94,7 @@ export default class LessonTabs
 
     render(){
         return (
-            <Router>
+
                 <div>
                     <div className="row">
                         <div>
@@ -119,7 +119,7 @@ export default class LessonTabs
 
                     </Route>
                 </div>
-            </Router>
+
         );
     }
 }

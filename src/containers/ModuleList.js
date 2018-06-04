@@ -80,7 +80,7 @@ class ModuleList extends React.Component {
 
     render() {
         return(
-            <Router>
+
                 <div>
                     <div className="row">
                         <div className="col-4">
@@ -105,7 +105,7 @@ class ModuleList extends React.Component {
                     </div>
 
                 </div>
-            </Router>
+
         )
     }
 }

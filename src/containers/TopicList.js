@@ -96,10 +96,8 @@ export default class TopicList
 
     render(){
         return (
-            <Router>
+
                 <div>
-                    <h2>In TopicList: Editing lesson: {this.props.lessonId} Its Module is: {this.props.moduleId}</h2>
-                    <br/>
                     <div className="row">
                         <div>
                             <input className="form-control"
@@ -120,7 +118,7 @@ export default class TopicList
 
                     <Route path=""></Route>
                 </div>
-            </Router>
+
         );
     }
 }
