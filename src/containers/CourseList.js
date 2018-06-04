@@ -8,7 +8,8 @@ class CourseList extends React.Component{
         super();
         this.state = {
             course: { title: '' },
-            courses:[]
+            courses:[],
+            curUser:{ username: ''}
         }
         this.courseService = CourseServiceClient.instance;
         this.titleChanged = this.titleChanged.bind(this); // bind these methods to this component in constructor.
@@ -18,7 +19,17 @@ class CourseList extends React.Component{
     }
 
     componentDidMount(){ // data is ready to render. Before rendering, what's your last word?
+        this.getCurUser();
         this.findAllCourses();
+    }
+
+    getCurUser(){
+        let me = this;
+        this.courseService
+            .getCurUser()
+            .then((data)=>{
+                this.setState({curUser:{username: data.username}});
+            })
     }
 
     findAllCourses(){
@@ -35,7 +46,7 @@ class CourseList extends React.Component{
         if(this.state){
             courses = this.state.courses.map(
                 function(course){
-                    return <CourseRow key={course.id} course={course} deleteCourse={me.deleteCourse}/>
+                    return <CourseRow key={course.id} curU={me.state.curUser.username} course={course} deleteCourse={me.deleteCourse}/>
                 }
             );
         }
