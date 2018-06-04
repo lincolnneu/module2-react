@@ -1,7 +1,6 @@
 import React from 'react'
 import ModuleList from './ModuleList'
 import CourseServiceClient from "../services/CourseServiceClient";
-import CourseTitle from '../components/CourseTitle';
 
 export default class CourseEditor
     extends React.Component{
@@ -42,7 +41,7 @@ export default class CourseEditor
     render(){
         return (
             <div>
-                <CourseTitle courseId={this.state.courseId} courseTitle={this.state.course.title}/>
+                <h2>Editing course: {this.state.course.title}</h2>
                     <div>
                         <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
                     </div>
