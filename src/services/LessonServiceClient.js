@@ -1,4 +1,4 @@
-const LESSON_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson';
+const LESSON_API_URL = 'https://webdev-summer-2018-lincoln.herokuapp.com/api/course/CID/module/MID/lesson';
 
 let _singleton = Symbol();
 export default class LessonServiceClient { // this service is a singleton

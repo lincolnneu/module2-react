@@ -1,4 +1,4 @@
-const TOPIC_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
+const TOPIC_API_URL = 'https://webdev-summer-2018-lincoln.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
 
 let _singleton = Symbol();
 export default class TopicServiceClient { // this service is a singleton
