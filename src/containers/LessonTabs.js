@@ -95,9 +95,9 @@ export default class LessonTabs
                 .deleteLesson(lessonId)
                 .then(() => {
                     this.sleep(2000);
-                }
                     this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
-                });
+                })
+            };
         // }
     }
 
