@@ -8,7 +8,7 @@ export default class ModuleListItem extends React.Component{
             <div>
                 <li className="nav-item">
                     <span className="nav-link active" href="#">
-                        <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}/edit`}>
+                        <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                             {this.props.title}
                         </Link>
                         <i onClick={function(){me.props.deleteLesson(me.props.lesson.id);}} className="fa fa-times"></i>

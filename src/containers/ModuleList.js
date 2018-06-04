@@ -82,8 +82,6 @@ class ModuleList extends React.Component {
         return(
             <Router>
                 <div>
-                    <h3>Module List for course: {this.state.courseId}</h3>
-                    <br/>
                     <div className="row">
                         <div className="col-4">
                             <input className="form-control"
@@ -94,12 +92,12 @@ class ModuleList extends React.Component {
                                 <i className="fa fa-plus"></i>
                             </button>
 
-                            <ul className="list-group">
+                            <ul className="list-group nav nav-tabs">
                                 {this.renderListOfModules()}
                             </ul>
                         </div>
                         <div className="col-8">
-                            <Route path="/course/:courseId/module/:moduleId/edit"
+                            <Route path="/course/:courseId/module/:moduleId"
                                     component={ModuleEditor}>
                             </Route>
 

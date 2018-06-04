@@ -96,8 +96,6 @@ export default class LessonTabs
         return (
             <Router>
                 <div>
-                    <h2>In LessonTabs: Editing module: {this.props.moduleId}</h2>
-                    <br/>
                     <div className="row">
                         <div>
                             <input className="form-control"
@@ -116,7 +114,7 @@ export default class LessonTabs
                         </div>
                     </div>
 
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/edit"
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                            component={LessonEditor} >
 
                     </Route>

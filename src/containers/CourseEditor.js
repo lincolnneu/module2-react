@@ -19,11 +19,10 @@ export default class CourseEditor
         this.setState({courseId: courseId});
     }
 
-
     render(){
         return (
             <div>
-                <h2>Editing course: {this.state.courseId}</h2>
+                <h2>Editing course: #{this.state.courseId}</h2>
                     <div>
                         <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
                     </div>
