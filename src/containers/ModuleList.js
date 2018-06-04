@@ -31,7 +31,6 @@ class ModuleList extends React.Component {
     setCurModuleId(){
         let curModule = window.location.href.split('/')[6];
         this.setState({curModuleId: curModule});
-
     }
 
     findAllModulesForCourse(courseId){
@@ -54,11 +53,15 @@ class ModuleList extends React.Component {
         this.findAllModulesForCourse(newProps.courseId);
     }
 
-
-    createModule(event) {
+    checkTitleNull(event) {
         if(this.state.module.title === ''){
             this.setState({module:{title: "new module"}});
         }
+        return Promise.resolve(event);
+    }
+
+
+    createModule(event) {
         this.moduleService
             .createModule(this.props.courseId, this.state.module)
             .then(() => { this.findAllModulesForCourse(this.props.courseId);});
@@ -92,12 +95,19 @@ class ModuleList extends React.Component {
     }
 
     render() {
+        let me = this;
         return(
 
                 <div>
                     <div className="row">
                         <div className="col-4">
-                            <button onClick={this.createModule} className="btn btn-primary btn-block">
+                            <button onClick={
+                                (event)=>{
+                                    me.checkTitleNull(event)
+                                        .then(me.createModule);
+                                }
+
+                                } className="btn btn-primary btn-block">
                                 <i className="fa fa-plus"></i>
                             </button>
                             <br/>
