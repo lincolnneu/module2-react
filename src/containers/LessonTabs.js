@@ -115,18 +115,18 @@ export default class LessonTabs
         return (
 
                 <div className="container">
-                    <div className="row">
                         <div>
-                            <input className="form-control" onChange={me.titleChanged} placeholder="title"/>
-                            <button onClick={
-                                (event)=>{
-                                me.checkTitleNull(event)
-                                    .then(me.createLesson);
-                            }}
-                                    className="btn btn-primary btn-block">
-                                <i className="fa fa-plus"></i>
-                            </button>
-                            </div>
+                            <form className="input-group form-inline my-2 my-lg-0">
+                                <input className="form-control mr-sm-2" onChange={me.titleChanged} placeholder="new lesson"/>
+                                <button onClick={
+                                    (event)=>{
+                                        me.checkTitleNull(event)
+                                            .then(me.createLesson);
+                                    }}
+                                        className="btn btn-primary my-2 my-sm-0">
+                                    <i className="fa fa-plus"></i>
+                                </button>
+                            </form>
                             <ul className="list-group">
                                 <ul className="nav nav-tabs">
                                     {this.renderListOfLessons()}

@@ -89,7 +89,7 @@ class CourseList extends React.Component{
                     <a className="navbar-brand" href="/courses">Course Manager</a>
 
                     <form className="input-group form-inline my-2 my-lg-0">
-                        <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101" aria-label="Search"/>
+                        <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101"/>
                         <button onClick={
                             (event)=>{
                                 me.checkTitleNull(event)

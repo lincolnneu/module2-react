@@ -114,7 +114,7 @@ class ModuleList extends React.Component {
 
                             <input className="form-control"
                                    onChange={this.titleChanged}
-                                   placeholder="title"/>
+                                   placeholder="new module"/>
 
                             <ul className="list-group">
                                 {this.renderListOfModules()}
