@@ -6,6 +6,10 @@ import CourseServiceClient from "../services/CourseServiceClient"
 class CourseList extends React.Component{
     constructor(){
         super();
+        this.state = {
+            course: { title: '' },
+            courses:[]
+        }
         this.courseService = CourseServiceClient.instance;
         this.titleChanged = this.titleChanged.bind(this); // bind these methods to this component in constructor.
         this.createCourse = this.createCourse.bind(this);
@@ -51,6 +55,19 @@ class CourseList extends React.Component{
             }
         });
     }
+
+    checkTitleNull(event){
+        if(this.state.course.title === ''){
+            this.setState({course:{
+                title: "new course",
+                created: Date.now(),
+                modified: Date.now()
+            }})
+        }
+        return Promise.resolve(event);
+    }
+
+
     createCourse(){
         this.courseService
             .createCourse(this.state.course)
@@ -65,6 +82,7 @@ class CourseList extends React.Component{
     }
 
     render(){
+        let me = this;
         return(
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -72,7 +90,12 @@ class CourseList extends React.Component{
 
                     <form className="input-group form-inline my-2 my-lg-0">
                         <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101" aria-label="Search"/>
-                        <button onClick={this.createCourse} className="btn btn-outline-danger my-2 my-sm-0" type="button">+</button>
+                        <button onClick={
+                            (event)=>{
+                                me.checkTitleNull(event)
+                                    .then(me.createCourse);
+                                }
+                            } className="btn btn-outline-danger my-2 my-sm-0" type="button">+</button>
                     </form>
 
                 </nav>
