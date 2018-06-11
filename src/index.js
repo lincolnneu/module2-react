@@ -11,6 +11,11 @@ import {createStore} from 'redux'
 const WidgetList = ({widgets}) =>(
     <div>
         <h1>Widget List {widgets.length}</h1>
+        <ul>
+            {widgets.map(widget =>(
+                <li>{widget.text}</li>
+            ))}
+        </ul>
     </div>
 )
 
