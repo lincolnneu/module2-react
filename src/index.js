@@ -7,6 +7,15 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import {Provider, connect} from 'react-redux'
 import {createStore} from 'redux'
 
+const findAllWidgets = dispatch => {
+    fetch('http://localhost:8080/api/widget')
+        .then(response =>(response.json()))
+        .then(widgets => dispatch({
+            type:'FIND_ALL_WIDGETS',
+            widgets: widgets
+        }))
+}
+
 const Widget = ({widget, dispatch}) => (
     <li>{widget.id} {widget.text}
         <button onClick={e=>(
@@ -19,7 +28,8 @@ const WidgetContainer = connect()(Widget)
 
 class WidgetList extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.props.findAllWidgets()
     }
     render(){
         return(
@@ -38,8 +48,6 @@ class WidgetList extends Component{
 
         )
     }
-
-
 }
 
 let initialState = {
@@ -52,8 +60,12 @@ let initialState = {
 
 let idAutoIncrement = 3;
 
-const widgetReducer =(state=initialState, action) =>{
+const widgetReducer =(state={widgets: []}, action) =>{
     switch (action.type){
+        case 'FIND_ALL_WIDGETS':
+            return {
+                widgets: action.widgets
+            }
         case 'DELETE_WIDGET':
             return{
                 widgets: state.widgets.filter(widget =>(
@@ -77,10 +89,13 @@ const stateToPropertiesMapper = (state) =>(
     }
 )
 
+const dispatcherToPropsMapper = dispatch =>({
+    findAllWidgets: () => findAllWidgets(dispatch)
+})
 
 let store = createStore(widgetReducer)
 
-const App = connect(stateToPropertiesMapper)(WidgetList)
+const App = connect(stateToPropertiesMapper,dispatcherToPropsMapper)(WidgetList)
 
 // className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
