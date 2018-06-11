@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import App from "../containers/widgetList"
 export default class TopicPill extends React.Component{
     render(){
         let me = this;
@@ -14,7 +14,9 @@ export default class TopicPill extends React.Component{
                         </Link>
                         <i onClick={function(){me.props.deleteTopic(me.props.topic.id);}} className="fa fa-times"></i>
                     </span>
+
                 </li>
+                <App/>
             </div>
         );
     }

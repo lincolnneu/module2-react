@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import * as actions from "../actions";
-import WidgetContainer from "../components/widgets";
+import WidgetContainer from "../components/widget";
 
 class WidgetList extends Component{
     constructor(props){

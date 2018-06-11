@@ -15,8 +15,8 @@ let store = createStore(widgetReducer)
 // className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
-        {/*<CourseManager/>*/}
+
+        <CourseManager/>
         {/*<Stateless message={"this is a stateless component"}/>*/}
     </Provider>,
     document.getElementById('root') // default id is root
