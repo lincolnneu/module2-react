@@ -1,5 +1,5 @@
 // entry point of an app
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom'; // only need this in high level index
 import CourseManager from './containers/CourseManager';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -17,20 +17,30 @@ const Widget = ({widget, dispatch}) => (
 
 const WidgetContainer = connect()(Widget)
 
-const WidgetList = ({widgets,dispatch}) =>(
-    <div>
-        <h1>Widget List {widgets.length}</h1>
-        <ul>
-            {widgets.map(widget =>(
-                <WidgetContainer widget={widget}
-                        key={widget.id}/>
-            ))}
-        </ul>
-        <button onClick={e=>(
-            dispatch({type: 'ADD_WIDGET'})
-        )}>Add widget</button>
-    </div>
-)
+class WidgetList extends Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return(
+            <div>
+                <h1>Widget List {this.props.widgets.length}</h1>
+                <ul>
+                    {this.props.widgets.map(widget =>(
+                        <WidgetContainer widget={widget}
+                                         key={widget.id}/>
+                    ))}
+                </ul>
+                <button onClick={e=>(
+                    this.props.dispatch({type: 'ADD_WIDGET'})
+                )}>Add widget</button>
+            </div>
+
+        )
+    }
+
+
+}
 
 let initialState = {
     widgets: [
