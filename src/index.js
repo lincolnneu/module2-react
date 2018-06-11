@@ -8,11 +8,11 @@ import {Provider, connect} from 'react-redux'
 import {createStore} from 'redux'
 
 const Widget = ({widget}) => (
-    <li>{widget.text}</li>
+    <li>{widget.id} {widget.text}</li>
 )
 
 
-const WidgetList = ({widgets}) =>(
+const WidgetList = ({widgets,dispatch}) =>(
     <div>
         <h1>Widget List {widgets.length}</h1>
         <ul>
@@ -21,6 +21,9 @@ const WidgetList = ({widgets}) =>(
                         key={widget.id}/>
             ))}
         </ul>
+        <button onClick={e=>(
+            dispatch({type: 'ADD_WIDGET'})
+        )}>Add widget</button>
     </div>
 )
 
@@ -32,7 +35,19 @@ let initialState = {
     ]
 }
 
-const widgetReducer =() =>{
+let idAutoIncrement = 3;
+
+const widgetReducer =(state=initialState, action) =>{
+    switch (action.type){
+        case 'ADD_WIDGET':
+            return{
+                widgets: [
+                    ...state.widgets,
+                    {id: idAutoIncrement++, text:'New Widget'}
+                ]
+            }
+    }
+
     return initialState
 }
 const stateToPropertiesMapper = (state) =>(
