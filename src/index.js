@@ -16,6 +16,11 @@ const findAllWidgets = dispatch => {
         }))
 }
 
+const addWidget = dispatch =>{
+    dispatch({type: 'ADD_WIDGET'})
+}
+
+
 const Widget = ({widget, dispatch}) => (
     <li>{widget.id} {widget.text}
         <button onClick={e=>(
@@ -41,9 +46,7 @@ class WidgetList extends Component{
                                          key={widget.id}/>
                     ))}
                 </ul>
-                <button onClick={e=>(
-                    this.props.dispatch({type: 'ADD_WIDGET'})
-                )}>Add widget</button>
+                <button onClick={this.props.addWidget}>Add widget</button>
             </div>
 
         )
@@ -90,7 +93,8 @@ const stateToPropertiesMapper = (state) =>(
 )
 
 const dispatcherToPropsMapper = dispatch =>({
-    findAllWidgets: () => findAllWidgets(dispatch)
+    findAllWidgets: () => findAllWidgets(dispatch),
+    addWidget: () => addWidget(dispatch)
 })
 
 let store = createStore(widgetReducer)
