@@ -1,17 +1,30 @@
 import React from 'react';
 import * as constants from "../constants";
 import {connect} from "react-redux";
+import * as actions from "../actions"
 
-const Heading = () => (
-    <div>
-        <h2>Heading</h2>
-        <select>
-            <option>Heading 1</option>
-            <option>Heading 2</option>
-            <option>Heading 3</option>
-        </select>
-    </div>
-)
+const Heading = ({widget, headingSizeChanged}) => {
+    let selectElem;
+    return (
+        <div>
+            <h2>Heading</h2>
+            <select onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
+                    ref={node=> selectElem = node}>
+                <option>Heading 1</option>
+                <option>Heading 2</option>
+                <option>Heading 3</option>
+            </select>
+        </div>
+    )
+}
+
+
+const dispatchToPropsMapper = dispatch => ({
+    headingSizeChanged: (widgetId, newSize) => actions.headingSizeChanged(dispatch, widgetId, newSize)
+})
+
+const HeadingContainer = connect(null, dispatchToPropsMapper)(Heading);
+
 
 
 const Paragraph = () =>(
@@ -54,7 +67,7 @@ const Widget = ({widget, dispatch}) => {
             )}>Delete</button>
 
             <div>
-                {widget.widgetType === 'Heading' && <Heading/>}
+                {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <Paragraph/>}
                 {widget.widgetType === 'List' && <List/>}
                 {widget.widgetType === 'Image' && <Image/>}

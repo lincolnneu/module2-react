@@ -1,5 +1,10 @@
 import * as constants from "../constants";
 
+export const headingSizeChanged = (dispatch, widgetId, newSize) =>(
+    dispatch({type: constants.HEADING_SIZE_CHANGED, id: widgetId, size: newSize})
+)
+
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response =>(response.json()))

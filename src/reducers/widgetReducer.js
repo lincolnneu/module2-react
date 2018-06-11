@@ -2,6 +2,10 @@ import * as constants from "../constants";
 
 export const widgetReducer =(state={widgets: []}, action) =>{
     switch (action.type){
+        case constants.HEADING_SIZE_CHANGED:
+            alert("HEADING_SIZE_CHANGED");
+            return state;
+            
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
             let newState={
