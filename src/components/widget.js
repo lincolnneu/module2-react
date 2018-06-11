@@ -36,7 +36,8 @@ const Widget = ({widget, dispatch}) => {
     return (
         <li>
             {widget.id} {widget.text}
-            <select onChange={e=> dispatch({
+            <select value={widget.widgetType}
+                onChange={e=> dispatch({
                 type: constants.SELECT_WIDGET_TYPE,
                 id: widget.id,
                 widgetType: selectElement.value
