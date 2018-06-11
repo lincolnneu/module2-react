@@ -7,13 +7,18 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import {Provider, connect} from 'react-redux'
 import {createStore} from 'redux'
 
+const Widget = ({widget}) => (
+    <li>{widget.text}</li>
+)
+
 
 const WidgetList = ({widgets}) =>(
     <div>
         <h1>Widget List {widgets.length}</h1>
         <ul>
             {widgets.map(widget =>(
-                <li key={widget.id}>{widget.text}</li>
+                <Widget widget={widget}
+                        key={widget.id}/>
             ))}
         </ul>
     </div>
