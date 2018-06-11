@@ -13,7 +13,7 @@ const WidgetList = ({widgets}) =>(
         <h1>Widget List {widgets.length}</h1>
         <ul>
             {widgets.map(widget =>(
-                <li>{widget.text}</li>
+                <li key={widget.id}>{widget.text}</li>
             ))}
         </ul>
     </div>
@@ -22,8 +22,8 @@ const WidgetList = ({widgets}) =>(
 let initialState = {
     widgets: [
         {id:0, text: 'Widget 1'},
-        {id:0, text: 'Widget 2'},
-        {id:0, text: 'Widget 3'},
+        {id:1, text: 'Widget 2'},
+        {id:2, text: 'Widget 3'},
     ]
 }
 
