@@ -20,6 +20,11 @@ const addWidget = dispatch =>{
     dispatch({type: 'ADD_WIDGET'})
 }
 
+const save = dispatch =>(
+    dispatch({type: 'SAVE'})
+)
+
+
 
 const Widget = ({widget, dispatch}) => (
     <li>{widget.id} {widget.text}
@@ -40,6 +45,7 @@ class WidgetList extends Component{
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
+                <button onClick={this.props.save}>Save</button>
                 <ul>
                     {this.props.widgets.map(widget =>(
                         <WidgetContainer widget={widget}
@@ -65,6 +71,15 @@ let idAutoIncrement = 3;
 
 const widgetReducer =(state={widgets: []}, action) =>{
     switch (action.type){
+        case 'SAVE':
+            fetch('http://localhost:8080/api/widget/save',{
+                method:'post',
+                body: JSON.stringify(state.widgets),
+                headers:{
+                    'content-type': 'application/json'
+                }
+            });
+            return state;
         case 'FIND_ALL_WIDGETS':
             return {
                 widgets: action.widgets
@@ -79,7 +94,7 @@ const widgetReducer =(state={widgets: []}, action) =>{
             return{
                 widgets: [
                     ...state.widgets,
-                    {id: idAutoIncrement++, text:'New Widget'}
+                    {id: state.widgets.length++, text:'New Widget'}
                 ]
             }
     }
@@ -94,7 +109,8 @@ const stateToPropertiesMapper = (state) =>(
 
 const dispatcherToPropsMapper = dispatch =>({
     findAllWidgets: () => findAllWidgets(dispatch),
-    addWidget: () => addWidget(dispatch)
+    addWidget: () => addWidget(dispatch),
+    save: () => save(dispatch)
 })
 
 let store = createStore(widgetReducer)
