@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import App from "../containers/widgetList"
+import WidgetListContainer from "../containers/WidgetList"
 export default class TopicPill extends React.Component{
     render(){
         let me = this;
@@ -16,7 +16,6 @@ export default class TopicPill extends React.Component{
                     </span>
 
                 </li>
-                <App/>
             </div>
         );
     }

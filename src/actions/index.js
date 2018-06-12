@@ -5,14 +5,24 @@ export const headingSizeChanged = (dispatch, widgetId, newSize) =>(
 )
 
 
-export const findAllWidgets = dispatch => {
-    fetch('http://localhost:8080/api/widget')
+export const findAllWidgets = (dispatch,topicId) => {
+    fetch('http://localhost:8080/api/widget' + topicId)
         .then(response =>(response.json()))
         .then(widgets => dispatch({
             type:constants.FIND_ALL_WIDGETS,
             widgets: widgets
         }))
 }
+
+export const findAllWidgetsForTopic = (dispatch,courseId,moduleId,lessonId,topicId) =>{
+    fetch('http://localhost:8080/api/course/'+courseId+'/module/'+moduleId+'/lesson/'+lessonId+'/topic/'+topicId+'/widget')
+        .then(response => (response.json()))
+        .then(widgets => dispatch({
+            type:constants.FIND_ALLWIDGETS_FOR_TOPIC,
+            widgets:widgets
+        }))
+}
+
 
 export const addWidget = dispatch =>{
     dispatch({type: constants.ADD_WIDGET})

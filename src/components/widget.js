@@ -7,12 +7,12 @@ const Heading = ({widget, headingSizeChanged}) => {
     let selectElem;
     return (
         <div>
-            <h2>Heading</h2>
+            <h2>Heading {widget.size}</h2>
             <select onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
                     ref={node=> selectElem = node}>
-                <option>Heading 1</option>
-                <option>Heading 2</option>
-                <option>Heading 3</option>
+                <option value="1">Heading 1</option>
+                <option value="2">Heading 2</option>
+                <option value="3">Heading 3</option>
             </select>
         </div>
     )
@@ -60,8 +60,6 @@ const Widget = ({widget, dispatch}) => {
                 <option>List</option>
                 <option>Image</option>
             </select>
-
-
             <button onClick={e=>(
                 dispatch({type: constants.DELETE_WIDGET, id:widget.id})
             )}>Delete</button>

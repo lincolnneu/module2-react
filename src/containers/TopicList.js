@@ -2,6 +2,8 @@ import React from 'react';
 import TopicPill from "../components/TopicPill";
 import TopicServiceClient from "../services/TopicServiceClient";
 import {BrowserRouter as Route} from 'react-router-dom'
+import TopicEditor from "./TopicEditor"
+
 
 export default class TopicList
     extends React.Component{
@@ -126,8 +128,6 @@ export default class TopicList
                             </ul>
 
                     </div>
-
-                    <Route path="#"></Route>
                 </div>
 
         );

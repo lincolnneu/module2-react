@@ -129,7 +129,6 @@ export default class LessonTabs
     render(){
         let me = this;
         return (
-
                 <div className="container">
                     <form className="input-group form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" onChange={me.titleChanged} placeholder="new lesson"/>
@@ -150,13 +149,10 @@ export default class LessonTabs
 
                     <br/>
                     <br/>
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                           component={LessonEditor}>
-                    </Route>
+
 
 
                 </div>
-
 
         );
     }

@@ -6,9 +6,10 @@ import WidgetContainer from "../components/widget";
 class WidgetList extends Component{
     constructor(props){
         super(props);
-        this.props.findAllWidgets()
+        this.props.findAllWidgetsForTopic(this.props.courseId,this.props.moduleId,this.props.lessonId,this.props.topicId);
     }
     render(){
+        console.log(this.props);
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
@@ -21,7 +22,6 @@ class WidgetList extends Component{
                 </ul>
                 <button onClick={this.props.addWidget}>Add widget</button>
             </div>
-
         )
     }
 }
@@ -33,13 +33,16 @@ const stateToPropertiesMapper = (state) =>(
 )
 
 const dispatcherToPropsMapper = dispatch =>({
-    findAllWidgets: () => actions.findAllWidgets(dispatch),
+    findAllWidgets: (topicId) => actions.findAllWidgets(dispatch,topicId),
+    findAllWidgetsForTopic:(courseId,moduleId,lessonId,topicId) => actions.findAllWidgetsForTopic(dispatch,courseId,moduleId,lessonId,topicId),
     addWidget: () => actions.addWidget(dispatch),
     save: () => actions.save(dispatch)
 })
 
 
 
-const App = connect(stateToPropertiesMapper,dispatcherToPropsMapper)(WidgetList)
+const WidgetListContainer = connect(stateToPropertiesMapper,dispatcherToPropsMapper)(WidgetList)
 
-export default App
+export default WidgetListContainer
+// It should be the connected container that is supposed to be exported to defualt. Not the component WidgetList.
+// // Otherwise the props will be undefined.
