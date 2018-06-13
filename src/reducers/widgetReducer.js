@@ -2,6 +2,9 @@ import * as constants from "../constants";
 
 export const widgetReducer =(state={widgets: []}, action) =>{
     switch (action.type){
+        case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
+            return {widgets:action.widgets};
+
         case constants.HEADING_SIZE_CHANGED:
             return {
                 widget: state.widgets.map(widget => {
@@ -24,7 +27,7 @@ export const widgetReducer =(state={widgets: []}, action) =>{
             }
             return JSON.parse(JSON.stringify(newState));
         case constants.SAVE:
-            fetch('http://localhost:8080/api/widget/save',{
+            fetch('http://localhost:8080/api/topic/'+action.topicId+'/widget/save',{
                 method:'post',
                 body: JSON.stringify(state.widgets),
                 headers:{
@@ -46,7 +49,10 @@ export const widgetReducer =(state={widgets: []}, action) =>{
             return{
                 widgets: [
                     ...state.widgets,
-                    {id: state.widgets.length++, text:'New Widget', widgetType: 'Paragraph'}
+                    {id: state.widgets.length++,
+                        text:'New Widget',
+                        widgetType: 'Paragraph'
+                    }
                 ]
             }
         default:

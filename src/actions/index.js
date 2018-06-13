@@ -15,10 +15,10 @@ export const findAllWidgets = (dispatch,topicId) => {
 }
 
 export const findAllWidgetsForTopic = (dispatch,courseId,moduleId,lessonId,topicId) =>{
-    fetch('http://localhost:8080/api/course/'+courseId+'/module/'+moduleId+'/lesson/'+lessonId+'/topic/'+topicId+'/widget')
+    fetch('http://localhost:8080/api/topic/'+topicId+'/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
-            type:constants.FIND_ALLWIDGETS_FOR_TOPIC,
+            type:constants.FIND_ALL_WIDGETS_FOR_TOPIC,
             widgets:widgets
         }))
 }
@@ -28,6 +28,8 @@ export const addWidget = dispatch =>{
     dispatch({type: constants.ADD_WIDGET})
 }
 
-export const save = dispatch =>(
-    dispatch({type: constants.SAVE})
+export const save = (dispatch,topicId) =>(
+    dispatch({type: constants.SAVE,
+        topicId:topicId
+    })
 )

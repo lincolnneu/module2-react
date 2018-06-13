@@ -7,11 +7,16 @@ export default class TopicPill extends React.Component{
         return( // return jsx declaration
             <div>
                 <li className="nav nav-pills">
-                    <span className="nav-link active" href="#">
+                    <span className="nav-link active">
                         <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}
-                              style={{ color: '#FFF' }}>
+                            style={{ color: '#FFF' }}
+                              onClick={
+                                  function reloadPage(){
+                                      window.location.reload()}
+                              }>
                             {this.props.title}
                         </Link>
+
                         <i onClick={function(){me.props.deleteTopic(me.props.topic.id);}} className="fa fa-times"></i>
                     </span>
 
@@ -20,3 +25,6 @@ export default class TopicPill extends React.Component{
         );
     }
 }
+
+
+// {/**/}

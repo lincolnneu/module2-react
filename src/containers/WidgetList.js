@@ -10,10 +10,14 @@ class WidgetList extends Component{
     }
     render(){
         console.log(this.props);
+        let me = this;
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
-                <button onClick={this.props.save}>Save</button>
+                <button onClick={function(){
+                    me.props.save(me.props.topicId)
+                    }
+                }>Save</button>
                 <ul>
                     {this.props.widgets.map(widget =>(
                         <WidgetContainer widget={widget}
@@ -36,7 +40,7 @@ const dispatcherToPropsMapper = dispatch =>({
     findAllWidgets: (topicId) => actions.findAllWidgets(dispatch,topicId),
     findAllWidgetsForTopic:(courseId,moduleId,lessonId,topicId) => actions.findAllWidgetsForTopic(dispatch,courseId,moduleId,lessonId,topicId),
     addWidget: () => actions.addWidget(dispatch),
-    save: () => actions.save(dispatch)
+    save: (topicId) => actions.save(dispatch,topicId)
 })
 
 
