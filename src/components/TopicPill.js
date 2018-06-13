@@ -9,11 +9,7 @@ export default class TopicPill extends React.Component{
                 <li className="nav nav-pills">
                     <span className="nav-link active">
                         <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}
-                            style={{ color: '#FFF' }}
-                              onClick={
-                                  function reloadPage(){
-                                      window.location.reload()}
-                              }>
+                            style={{ color: '#FFF' }}>
                             {this.props.title}
                         </Link>
 
@@ -25,6 +21,3 @@ export default class TopicPill extends React.Component{
         );
     }
 }
-
-
-// {/**/}

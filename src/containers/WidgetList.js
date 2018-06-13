@@ -6,10 +6,17 @@ import WidgetContainer from "../components/widget";
 class WidgetList extends Component{
     constructor(props){
         super(props);
-        this.props.findAllWidgetsForTopic(this.props.courseId,this.props.moduleId,this.props.lessonId,this.props.topicId);
+        this.props.findAllWidgetsForTopic(this.props.topicId);
     }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.topicId != this.props.topicId){
+            this.props.findAllWidgetsForTopic(nextProps.topicId);
+        }
+    }
+
     render(){
-        console.log(this.props);
+        // console.log(this.props);
         let me = this;
         return(
             <div>
@@ -38,7 +45,7 @@ const stateToPropertiesMapper = (state) =>(
 
 const dispatcherToPropsMapper = dispatch =>({
     findAllWidgets: (topicId) => actions.findAllWidgets(dispatch,topicId),
-    findAllWidgetsForTopic:(courseId,moduleId,lessonId,topicId) => actions.findAllWidgetsForTopic(dispatch,courseId,moduleId,lessonId,topicId),
+    findAllWidgetsForTopic:(topicId) => actions.findAllWidgetsForTopic(dispatch,topicId),
     addWidget: () => actions.addWidget(dispatch),
     save: (topicId) => actions.save(dispatch,topicId)
 })

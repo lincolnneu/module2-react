@@ -14,7 +14,7 @@ export const findAllWidgets = (dispatch,topicId) => {
         }))
 }
 
-export const findAllWidgetsForTopic = (dispatch,courseId,moduleId,lessonId,topicId) =>{
+export const findAllWidgetsForTopic = (dispatch,topicId) =>{
     fetch('http://localhost:8080/api/topic/'+topicId+'/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
