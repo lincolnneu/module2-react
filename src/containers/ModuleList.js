@@ -126,7 +126,7 @@ class ModuleList extends React.Component {
                             </ul>
                         </div>
                         <div className="col-8">
-
+                            <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}/>
 
                         </div>
                     </div>

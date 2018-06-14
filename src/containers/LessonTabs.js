@@ -154,7 +154,7 @@ export default class LessonTabs
 
                     <br/>
                     <br/>
-
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
 
 
                 </div>

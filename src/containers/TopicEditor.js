@@ -10,7 +10,6 @@ let store = createStore(widgetReducer);
 export default class TopicEditor
     extends React.Component{
     constructor(props){
-        alert("Topic Editor!!!!!");
         super(props);
         this.state = {
             moduleId:'',

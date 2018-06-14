@@ -1,7 +1,7 @@
 import React from 'react';
 import TopicPill from "../components/TopicPill";
 import TopicServiceClient from "../services/TopicServiceClient";
-import {BrowserRouter as Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import TopicEditor from "./TopicEditor"
 
 
@@ -126,7 +126,6 @@ export default class TopicList
     render(){
         let me = this;
         return (
-
                 <div>
                     <div>
                         <form className="input-group form-inline my-2 my-lg-0">
@@ -146,10 +145,9 @@ export default class TopicList
                                     {this.renderListOfTopics()}
                                 </ul>
                             </ul>
-
                     </div>
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId" component={TopicEditor}/>
                 </div>
-
         );
     }
 }
