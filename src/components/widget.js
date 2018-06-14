@@ -14,6 +14,10 @@ const Heading = ({widget, headingSizeChanged}) => {
                 <option value="2">Heading 2</option>
                 <option value="3">Heading 3</option>
             </select>
+            <h3>Preview</h3>
+            {widget.size == 1 && <h1>Heading Text</h1>}
+            {widget.size == 2 && <h2>Heading Text</h2>}
+            {widget.size == 3 && <h3>Heading Text</h3>}
         </div>
     )
 }
