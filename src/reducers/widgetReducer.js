@@ -6,8 +6,14 @@ export const widgetReducer =(state={widgets: []}, action) =>{
             return {widgets:action.widgets};
 
         case constants.HEADING_SIZE_CHANGED:
-            alert("HEADING_SIZE_CHANGED");
-            return state;
+            return{
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id == action.id){
+                        widget.size = action.size;
+                    }
+                    return Object.assign({}, widget);
+                })
+            }
 
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
