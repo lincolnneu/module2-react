@@ -30,7 +30,11 @@ class ModuleList extends React.Component {
 
     setCurModuleId(){
         let curModule = window.location.href.split('/')[6];
+        let courseId = this.state.courseId;
+        this.setCourseId();
         this.setState({curModuleId: curModule});
+        this.setCourseId(courseId);
+
     }
 
     findAllModulesForCourse(courseId){
@@ -48,9 +52,16 @@ class ModuleList extends React.Component {
     }
 
     componentWillReceiveProps(newProps){
-        // this.setCurModuleId();
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId);
+
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        let curModule = window.location.href.split('/')[6];
+        if(curModule !== prevState.curModuleId){
+            this.setCurModuleId();
+        }
     }
 
     checkTitleNull(event) {
@@ -59,7 +70,6 @@ class ModuleList extends React.Component {
         }
         return Promise.resolve(event);
     }
-
 
     createModule(event) {
         this.moduleService
@@ -77,7 +87,6 @@ class ModuleList extends React.Component {
 
     }
 
-
     titleChanged(event) {
         this.setState({module: {title: event.target.value}});
     }
@@ -85,11 +94,7 @@ class ModuleList extends React.Component {
     renderListOfModules() {
         let me = this;
         let modules = this.state.modules.map(function (module) {
-            let at = '';
-            if(me.state.curModuleId == module.id){
-                at = 'bg-success';
-            }
-            return <ModuleListItem key={module.id} attribute={at} title={module.title} courseId={me.props.courseId} module={module} deleteModule={me.deleteModule}/>
+            return <ModuleListItem key={module.id} courseId={me.state.courseId} curModuleId={me.state.curModuleId} module={module} deleteModule={me.deleteModule}/>
         });
         return modules;
     }
