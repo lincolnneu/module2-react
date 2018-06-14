@@ -56,6 +56,13 @@ export default class LessonTabs
         this.setModuleId(this.props.moduleId);
     }
 
+    componentDidUpdate(prevProps,prevState){
+        let curLesson = window.location.href.split('/')[8];
+        if(curLesson !== prevState.curLessonId){
+            this.setCurLessonId();
+        }
+    }
+
     componentWillReceiveProps(newProps){
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
@@ -115,7 +122,7 @@ export default class LessonTabs
         let lessons = this.state.lessons.map(function (lesson) {
             let at = '';
             if(me.state.curLessonId == lesson.id){
-                at = 'show';
+                at = 'active';
             }
             return (
                     <LessonTabsItem key={lesson.id} attribute={at} title={lesson.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lesson={lesson} deleteLesson={me.deleteLesson}/>
@@ -123,8 +130,6 @@ export default class LessonTabs
         });
         return lessons;
     }
-
-
 
     render(){
         let me = this;
