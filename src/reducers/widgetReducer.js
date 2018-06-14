@@ -2,6 +2,15 @@ import * as constants from "../constants";
 
 export const widgetReducer =(state={widgets: []}, action) =>{
     switch (action.type){
+        case constants.HEADING_TEXT_CHANGED:
+            return {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.text = action.text;
+                    }
+                    return Object.assign({},widget);
+                })
+            }
         case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
             return {widgets:action.widgets};
 

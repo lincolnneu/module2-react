@@ -3,11 +3,16 @@ import * as constants from "../constants";
 import {connect} from "react-redux";
 import * as actions from "../actions"
 
-const Heading = ({widget, headingSizeChanged}) => {
+const Heading = ({widget, headingSizeChanged,headingTextChanged}) => {
     let selectElem;
+    let inputElem;
     return (
         <div>
             <h2>Heading {widget.size}</h2>
+            <input
+                onChange={() => headingTextChanged(widget.id, inputElem.value)}
+                ref={node=> inputElem = node}/>
+
             <select onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
                     ref={node=> selectElem = node}>
                 <option value="1">Heading 1</option>
@@ -15,15 +20,16 @@ const Heading = ({widget, headingSizeChanged}) => {
                 <option value="3">Heading 3</option>
             </select>
             <h3>Preview</h3>
-            {widget.size == 1 && <h1>Heading Text</h1>}
-            {widget.size == 2 && <h2>Heading Text</h2>}
-            {widget.size == 3 && <h3>Heading Text</h3>}
+            {widget.size == 1 && <h1>{widget.text}</h1>}
+            {widget.size == 2 && <h2>{widget.text}</h2>}
+            {widget.size == 3 && <h3>{widget.text}</h3>}
         </div>
     )
 }
 
 
 const dispatchToPropsMapper = dispatch => ({
+    headingTextChanged:(widgetId, newText) => actions.headingTextChanged(dispatch, widgetId, newText),
     headingSizeChanged: (widgetId, newSize) => actions.headingSizeChanged(dispatch, widgetId, newSize)
 })
 

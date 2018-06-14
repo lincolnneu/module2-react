@@ -26,7 +26,6 @@ const Welcome = () =>(
 
 export default class CourseManager extends Component{
     render(){
-        console.log(window.location);
         return(
                 <Router>
                     {/* a bootstrap class */}
