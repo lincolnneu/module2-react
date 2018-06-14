@@ -60,7 +60,8 @@ export const widgetReducer =(state={widgets: []}, action) =>{
                     ...state.widgets,
                     {id: state.widgets.length++,
                         text:'New Widget',
-                        widgetType: 'Paragraph'
+                        widgetType: 'Paragraph',
+                        size: '2'
                     }
                 ]
             }
