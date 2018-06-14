@@ -10,10 +10,13 @@ const Heading = ({widget, headingSizeChanged,headingTextChanged}) => {
         <div>
             <h2>Heading {widget.size}</h2>
             <input
+                value={widget.text}
                 onChange={() => headingTextChanged(widget.id, inputElem.value)}
                 ref={node=> inputElem = node}/>
 
-            <select onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
+            <select
+                    value={widget.size}
+                    onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
                     ref={node=> selectElem = node}>
                 <option value="1">Heading 1</option>
                 <option value="2">Heading 2</option>
