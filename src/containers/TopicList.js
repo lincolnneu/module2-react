@@ -15,7 +15,8 @@ export default class TopicList
             moduleId: '',
             lessonId: '',
             topic: { title: '' },
-            topics: []
+            topics: [],
+            curTopicId: ''
         };
 
         this.titleChanged = this.titleChanged.bind(this);
@@ -24,6 +25,7 @@ export default class TopicList
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
         this.deleteTopic = this.deleteTopic.bind(this);
+        this.setCurTopicId = this.setCurTopicId.bind(this);
         this.topicService = TopicServiceClient.instance; // once we have the instance we can call it in the createModule.
 
     }
@@ -49,10 +51,24 @@ export default class TopicList
         this.setState({lessonId: lessonId});
     }
 
+    setCurTopicId(){
+        let curTopic = window.location.href.split('/')[10];
+        this.setState({curTopicId: curTopic});
+        this.state.curTopicId = curTopic;
+    }
+
     componentDidMount(){
+        this.setCurTopicId();
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
         this.setLessonId(this.props.lessonId);
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        let curTopic = window.location.href.split('/')[10];
+        if(curTopic !== prevState.curTopicId){
+            this.setCurTopicId();
+        }
     }
 
     componentWillReceiveProps(newProps){
@@ -94,8 +110,12 @@ export default class TopicList
     renderListOfTopics() {
         let me = this;
         let topics = this.state.topics.map(function (topic) {
+            let at = ''
+            if(me.state.curTopicId == topic.id){
+                at = 'active';
+            }
             return (
-                <TopicPill key={topic.id} title={topic.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lessonId={me.props.lessonId} topic={topic} deleteTopic={me.deleteTopic}/>
+                <TopicPill key={topic.id} attribute={at} title={topic.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lessonId={me.props.lessonId} topic={topic} deleteTopic={me.deleteTopic}/>
             )
         });
         return topics;

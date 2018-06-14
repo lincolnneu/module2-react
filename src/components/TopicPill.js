@@ -4,12 +4,16 @@ import WidgetListContainer from "../containers/WidgetList"
 export default class TopicPill extends React.Component{
     render(){
         let me = this;
+        let s = {}
+        if(me.props.attribute == 'active'){
+            s = { color: '#FFF' }
+        }
         return( // return jsx declaration
             <div>
-                <li className="nav nav-pills">
-                    <span className="nav-link active">
+                <li className="nav nav-pills nav-justified">
+                    <span className={`nav-link ${this.props.attribute}`}>
                         <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}
-                            style={{ color: '#FFF' }}>
+                            style={s}>
                             {this.props.title}
                         </Link>
 
