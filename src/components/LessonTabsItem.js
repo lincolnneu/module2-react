@@ -24,12 +24,12 @@ export default class LessonTabsItem extends React.Component{
                             <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                                 {this.props.title}
                             </Link>
-                            <button onClick={function(event){
+                            <i onClick={function(event){
                                 me.props.deleteLesson(me.props.lesson.id);
                                 me.sleep(2000);
                                 window.location.reload();
 
-                            } } type="button" className="fa fa-times"></button>
+                            } } type="button" className="fa fa-times"></i>
                         </span>
                 </li>
             </div>

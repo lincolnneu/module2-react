@@ -129,6 +129,11 @@ export default class TopicList
                 <div>
                     <div>
                         <form className="input-group form-inline my-2 my-lg-0">
+                            <ul className="list-group">
+                                <ul className="nav nav-tabs">
+                                    {this.renderListOfTopics()}
+                                </ul>
+                            </ul>
                             <input className="form-control mr-sm-2" onChange={this.titleChanged}
                                    placeholder="new topic"/>
 
@@ -140,11 +145,7 @@ export default class TopicList
                                 <i className="fa fa-plus"></i>
                             </button>
                         </form>
-                            <ul className="list-group">
-                                <ul className="nav nav-tabs">
-                                    {this.renderListOfTopics()}
-                                </ul>
-                            </ul>
+
                     </div>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId" component={TopicEditor}/>
                 </div>

@@ -136,6 +136,11 @@ export default class LessonTabs
         return (
                 <div className="container">
                     <form className="input-group form-inline my-2 my-lg-0">
+                        <ul className="list-group">
+                            <ul className="nav nav-tabs">
+                                {this.renderListOfLessons()}
+                            </ul>
+                        </ul>
                         <input className="form-control mr-sm-2" onChange={me.titleChanged} placeholder="new lesson"/>
                         <button onClick={
                             (event)=>{
@@ -145,17 +150,8 @@ export default class LessonTabs
                                 className="btn btn-primary my-2 my-sm-0" type="button">
                             <i className="fa fa-plus"></i>
                         </button>
+
                     </form>
-                    <ul className="list-group">
-                        <ul className="nav nav-tabs">
-                            {this.renderListOfLessons()}
-                        </ul>
-                    </ul>
-
-                    <br/>
-                    <br/>
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
-
 
                 </div>
 

@@ -1,6 +1,9 @@
 import React from 'react'
 import ModuleList from './ModuleList'
 import CourseServiceClient from "../services/CourseServiceClient";
+import ModuleEditor from "./ModuleEditor";
+import {Route} from 'react-router-dom'
+import LessonEditor from "./LessonEditor";
 
 export default class CourseEditor
     extends React.Component{
@@ -44,12 +47,24 @@ export default class CourseEditor
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top box-shadow">
                     <div className="container d-flex justify-content-between">
                         <a className="navbar-brand align-items-center d-flex" href="/courses">{this.state.course.title}</a>
+                        <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}/>
                     </div>
                 </nav>
                 <br/>
                     <div>
-                        <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
+                        <div className="row">
+                            <div className="col-4">
+                                <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
+                            </div>
+                            <div className="col-8">
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
+
+
+                            </div>
+                        </div>
                     </div>
+
+
 
             </div>
         )

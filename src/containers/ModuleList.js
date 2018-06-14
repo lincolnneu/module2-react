@@ -104,8 +104,8 @@ class ModuleList extends React.Component {
         return(
 
                 <div>
-                    <div className="row">
-                        <div className="col-4">
+                    {/*<div className="row">*/}
+                        {/*<div className="col-4">*/}
                             <button onClick={
                                 (event)=>{
                                     me.checkTitleNull(event)
@@ -125,13 +125,6 @@ class ModuleList extends React.Component {
                                 {this.renderListOfModules()}
                             </ul>
                         </div>
-                        <div className="col-8">
-                            <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}/>
-
-                        </div>
-                    </div>
-
-                </div>
 
         )
     }
