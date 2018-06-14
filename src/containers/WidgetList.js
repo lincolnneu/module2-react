@@ -21,13 +21,17 @@ class WidgetList extends Component{
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
-                <button onClick={function(){
+                <button
+                    hidden={this.props.previewMode}
+                    onClick={function(){
                     me.props.save(me.props.topicId)
                     }
                 }>Save</button>
+                <button onClick={this.props.preview}>Preview</button>
                 <ul>
                     {this.props.widgets.map(widget =>(
                         <WidgetContainer widget={widget}
+                                         preview={this.props.previewMode}
                                          key={widget.id}/>
                     ))}
                 </ul>
@@ -39,7 +43,8 @@ class WidgetList extends Component{
 
 const stateToPropertiesMapper = (state) =>(
     {
-        widgets: state.widgets
+        widgets: state.widgets,
+        previewMode: state.preview
     }
 )
 
@@ -47,7 +52,8 @@ const dispatcherToPropsMapper = dispatch =>({
     findAllWidgets: (topicId) => actions.findAllWidgets(dispatch,topicId),
     findAllWidgetsForTopic:(topicId) => actions.findAllWidgetsForTopic(dispatch,topicId),
     addWidget: () => actions.addWidget(dispatch),
-    save: (topicId) => actions.save(dispatch,topicId)
+    save: (topicId) => actions.save(dispatch,topicId),
+    preview: () => actions.preview(dispatch)
 })
 
 

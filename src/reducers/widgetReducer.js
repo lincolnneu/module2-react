@@ -1,7 +1,12 @@
 import * as constants from "../constants";
 
-export const widgetReducer =(state={widgets: []}, action) =>{
+export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
+    let newState
     switch (action.type){
+        case constants.PREVIEW:
+            newState = Object.assign({}, state);
+            newState.preview = !state.preview;
+            return newState;
         case constants.HEADING_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget =>{
@@ -12,7 +17,11 @@ export const widgetReducer =(state={widgets: []}, action) =>{
                 })
             }
         case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
-            return {widgets:action.widgets};
+            // return {widgets:action.widgets};
+            newState = Object.assign({}, state);
+            newState.widgets = action.widgets;
+            return newState;
+
 
         case constants.HEADING_SIZE_CHANGED:
             return{
@@ -45,9 +54,9 @@ export const widgetReducer =(state={widgets: []}, action) =>{
             });
             return state;
         case constants.FIND_ALL_WIDGETS:
-            return {
-                widgets: action.widgets
-            }
+            newState = Object.assign({}, state);
+            newState.widgets = action.widgets;
+            return newState;
         case constants.DELETE_WIDGET:
             return{
                 widgets: state.widgets.filter(widget =>(

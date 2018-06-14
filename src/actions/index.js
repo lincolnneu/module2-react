@@ -38,3 +38,7 @@ export const save = (dispatch,topicId) =>(
         topicId:topicId
     })
 )
+
+export const preview = dispatch => (
+    dispatch({type: constants.PREVIEW})
+)
