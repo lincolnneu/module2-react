@@ -36,6 +36,7 @@ class WidgetList extends Component{
                                          preview={this.props.previewMode}
                                          key={widget.id}/>
                     ))}
+
                 </ul>
 
 
