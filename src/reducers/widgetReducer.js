@@ -3,6 +3,16 @@ import * as constants from "../constants";
 export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
     switch (action.type){
+        case constants.HEADING_NAME_CHANGED:
+            return{
+                widgets:state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.name = action.newName;
+
+                    }
+                    return Object.assign({},widget);
+                })
+            }
         case constants.PREVIEW:
             newState = Object.assign({}, state);
             newState.preview = !state.preview;

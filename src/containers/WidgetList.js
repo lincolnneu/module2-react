@@ -28,6 +28,8 @@ class WidgetList extends Component{
                     }
                 }>Save</button>
                 <button onClick={this.props.preview}>Preview</button>
+
+
                 <ul>
                     {this.props.widgets.map(widget =>(
                         <WidgetContainer widget={widget}
@@ -35,6 +37,8 @@ class WidgetList extends Component{
                                          key={widget.id}/>
                     ))}
                 </ul>
+
+
                 <button onClick={this.props.addWidget}>Add widget</button>
             </div>
         )

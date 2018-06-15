@@ -1,6 +1,10 @@
 import * as constants from "../constants";
 
 
+export const headingNameChanged = (dispatch, widgetId, newName) =>(
+    dispatch({type: constants.HEADING_NAME_CHANGED, id: widgetId, newName: newName})
+)
+
 export const headingTextChanged = (dispatch, widgetId, newText) =>(
     dispatch({type: constants.HEADING_TEXT_CHANGED, id: widgetId, text: newText})
 )
