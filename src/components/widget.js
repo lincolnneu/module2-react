@@ -81,27 +81,55 @@ const Widget = ({widget, preview, dispatch}) => {
     let selectElement;
 
     return (
-        <div className="card">
+        <div className="card list-group-item">
             <div className="card-body">
-                <li>
+                <div>
                     <div hidden={preview}>
-                        <h2>Heading widget</h2>{widget.id} {widget.text}
-                        <select value={widget.widgetType}
-                            onChange={e=> dispatch({
-                            type: constants.SELECT_WIDGET_TYPE,
-                            id: widget.id,
-                            widgetType: selectElement.value
-                        })} ref={node=>selectElement = node}>
-                            <option>Heading</option>
-                            <option>Paragraph</option>
-                            <option>List</option>
-                            <option>Image</option>
-                        </select>
-                        <i className="fa fa-remove"
-                           style={{fontSize: "24px",color:"red"}}
-                           onClick={e=>(
-                            dispatch({type: constants.DELETE_WIDGET, id:widget.id})
-                        )}/>
+                        <div className="container-fluid">
+                            <div className="row justify-content-between">
+                                <div>
+                                    <h3>Heading widget</h3>
+                                </div>
+
+                                <div className="form-inline">
+                                    <div style={{textAlign:"center", background:"#f5c246",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                        <i className="fa fa-arrow-up"
+                                           style={{fontSize: "14px",color:"black", background:"orange"}}
+                                           onClick={()=>{alert("up arrow")}}/>
+                                    </div>
+                                    <div  style={{textAlign:"center", background:"#f5c246",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                        <i className="fa fa-arrow-down"
+                                           style={{fontSize: "14px",color:"black"}}
+                                           onClick={()=>{alert("down arrow")}}/>
+                                    </div>
+                                    <div className="dropdown show">
+                                        <select
+                                            className="btn btn-outline-info"
+                                            value={widget.widgetType}
+                                            onChange={e=> dispatch({
+                                            type: constants.SELECT_WIDGET_TYPE,
+                                            id: widget.id,
+                                            widgetType: selectElement.value
+                                        })} ref={node=>selectElement = node}>
+                                            <option>Heading</option>
+                                            <option>Paragraph</option>
+                                            <option>List</option>
+                                            <option>Image</option>
+                                        </select>
+                                    </div>
+                                    <div style={{textAlign:"center", background:"#cb444a",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                        <i className="fa fa-remove"
+                                           style={{fontSize: "18px",color:"white"}}
+                                           onClick={e=>(
+                                            dispatch({type: constants.DELETE_WIDGET, id:widget.id})
+                                        )}/>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
 
                     <div>
@@ -112,7 +140,7 @@ const Widget = ({widget, preview, dispatch}) => {
 
                     </div>
 
-                </li>
+                </div>
             </div>
 
         </div>
