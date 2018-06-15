@@ -85,7 +85,7 @@ const Widget = ({widget, preview, dispatch}) => {
             <div className="card-body">
                 <li>
                     <div hidden={preview}>
-                        {widget.id} {widget.text}
+                        <h2>Heading widget</h2>{widget.id} {widget.text}
                         <select value={widget.widgetType}
                             onChange={e=> dispatch({
                             type: constants.SELECT_WIDGET_TYPE,
@@ -97,9 +97,11 @@ const Widget = ({widget, preview, dispatch}) => {
                             <option>List</option>
                             <option>Image</option>
                         </select>
-                        <button onClick={e=>(
+                        <i className="fa fa-remove"
+                           style={{fontSize: "24px",color:"red"}}
+                           onClick={e=>(
                             dispatch({type: constants.DELETE_WIDGET, id:widget.id})
-                        )}>Delete</button>
+                        )}/>
                     </div>
 
                     <div>

@@ -30,7 +30,7 @@ class WidgetList extends Component{
                 <button onClick={this.props.preview}>Preview</button>
 
 
-                <ul>
+                <ul className="list-group">
                     {this.props.widgets.map(widget =>(
                         <WidgetContainer widget={widget}
                                          preview={this.props.previewMode}
