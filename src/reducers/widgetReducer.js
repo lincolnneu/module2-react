@@ -80,7 +80,8 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                     {id: state.widgets.length++,
                         text:'New Widget',
                         widgetType: 'Heading',
-                        size: '1'
+                        size: '1',
+                        name: ''
                     }
                 ]
             }
