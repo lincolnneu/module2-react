@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import * as actions from "../actions";
 import WidgetContainer from "../components/widget";
+import '../index.css'
 
 class WidgetList extends Component{
     constructor(props){
@@ -21,14 +22,27 @@ class WidgetList extends Component{
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
+                <div className="form-inline float-right">
                 <button
+                    className="btn btn-success"
+                    style={{marginRight: "5px"}}
                     hidden={this.props.previewMode}
                     onClick={function(){
                     me.props.save(me.props.topicId)
                     }
                 }>Save</button>
-                <button onClick={this.props.preview}>Preview</button>
+                <span className="font-weight-normal align-text-bottom"
+                   style={{marginRight: "5px"}}>Preview</span>
+                <label className="switch">
+                    <input type="checkbox"
+                           onClick={this.props.preview}
+                    />
+                    <span className="slider round"></span>
+                </label>
+                </div>
 
+                <br/>
+                <br/>
 
                 <ul className="list-group">
                     {this.props.widgets.map(widget =>(
@@ -39,8 +53,10 @@ class WidgetList extends Component{
 
                 </ul>
 
-
-                <button onClick={this.props.addWidget}>Add widget</button>
+                <br/>
+                <button
+                    className="btn-sm btn-danger float-right"
+                    onClick={this.props.addWidget}><i className="fa fa-plus-circle"></i></button>
             </div>
         )
     }
