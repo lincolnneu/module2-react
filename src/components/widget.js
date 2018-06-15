@@ -82,29 +82,34 @@ const Widget = ({widget, preview, dispatch}) => {
 
     return (
         <div className="card list-group-item">
-            <div className="card-body">
+            <div>
                 <div>
                     <div hidden={preview}>
-                        <div className="container-fluid">
-                            <div className="row justify-content-between">
+                        <div>
+                            <div className="justify-content-between d-flex">
                                 <div>
                                     <h3>Heading widget</h3>
                                 </div>
 
-                                <div className="form-inline">
-                                    <div style={{textAlign:"center", background:"#f5c246",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                <div className="form-group align-items-center d-flex">
+                                    <button className="btn-sm btn-warning"
+                                        style={{marginRight: "5px"}}>
                                         <i className="fa fa-arrow-up"
-                                           style={{fontSize: "14px",color:"black", background:"orange"}}
+                                           style={{fontSize: "15px",color:"black"}}
                                            onClick={()=>{alert("up arrow")}}/>
-                                    </div>
-                                    <div  style={{textAlign:"center", background:"#f5c246",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                    </button>
+
+                                    <button  className="btn-warning btn-sm "
+                                             style={{marginRight: "5px"}}>
                                         <i className="fa fa-arrow-down"
-                                           style={{fontSize: "14px",color:"black"}}
+                                           style={{fontSize: "15px",color:"black"}}
                                            onClick={()=>{alert("down arrow")}}/>
-                                    </div>
-                                    <div className="dropdown show">
+                                    </button>
+
+                                    <div className="dropdown"
+                                         style={{marginRight: "5px"}}>
                                         <select
-                                            className="btn btn-outline-info"
+                                            className="btn-lg btn-outline-info"
                                             value={widget.widgetType}
                                             onChange={e=> dispatch({
                                             type: constants.SELECT_WIDGET_TYPE,
@@ -117,13 +122,13 @@ const Widget = ({widget, preview, dispatch}) => {
                                             <option>Image</option>
                                         </select>
                                     </div>
-                                    <div style={{textAlign:"center", background:"#cb444a",width:"26px",height:"26px",borderRadius:"5px 5px 5px 5px"}}>
+                                    <button className="btn-sm btn-danger">
                                         <i className="fa fa-remove"
-                                           style={{fontSize: "18px",color:"white"}}
+                                           style={{fontSize: "15px",color:"white"}}
                                            onClick={e=>(
                                             dispatch({type: constants.DELETE_WIDGET, id:widget.id})
                                         )}/>
-                                    </div>
+                                    </button>
 
                                 </div>
 
