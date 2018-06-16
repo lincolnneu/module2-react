@@ -24,7 +24,7 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
                         value={widget.size}
                         onChange={()=>headingSizeChanged(widget.id, selectElem.value)}
                         ref={node=> selectElem = node}>
-                    <option selected="selected" disabled="disabled">Choose size</option>
+                    <option disabled="disabled">Choose size</option>
                     <option value="1">Heading 1</option>
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
