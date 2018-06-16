@@ -129,7 +129,7 @@ const List = ({widget,listNameChanged,listTypeChanged,listTextChanged,preview}) 
     )
 }
 
-const Image = ({widget,imageURLChanged,imageNameChanged,preview}) => {
+const Image = ({widget,imageURLChanged,imageTextChanged,imageNameChanged,preview}) => {
     let inputElem;
     let nameElement;
 
@@ -158,6 +158,43 @@ const Image = ({widget,imageURLChanged,imageNameChanged,preview}) => {
     )
 }
 
+const Link = ({widget,linkURLChanged,linkTextChanged,linkNameChanged,preview}) => {
+    let inputElem;
+    let inputTextElem;
+    let nameElement;
+
+    return (
+        <div>
+            <div hidden={preview}>
+
+                <input
+                    placeholder="Link URL"
+                    className="form-control mb-3"
+                    value={widget.src}
+                    onChange={() => linkURLChanged(widget.id, inputElem.value)}
+                    ref={node=> inputElem = node}/>
+
+                <input
+                    placeholder="Link text"
+                    className="form-control mb-3"
+                    value={widget.text}
+                    onChange={() => linkTextChanged(widget.id, inputTextElem.value)}
+                    ref={node=> inputTextElem = node}/>
+
+
+                <input
+                    placeholder="Widget name"
+                    className="form-control mb-3"
+                    value={widget.name}
+                    onChange={() => linkNameChanged(widget.id, nameElement.value)}
+                    ref={node=> nameElement = node}/>
+                <h3>Preview</h3>
+            </div>
+            <a href={widget.src}>{widget.text}</a>
+        </div>
+    )
+}
+
 
 
 const stateToPropsMapper = state =>({
@@ -175,13 +212,16 @@ const dispatchToPropsMapper = dispatch => ({
     listTypeChanged: (widgetId, newType) => actions.listTypeChanged(dispatch, widgetId, newType),
     imageURLChanged: (widgetId, newText) => actions.imageURLChanged(dispatch, widgetId, newText),
     imageNameChanged:(widgetId, newName) => actions.imageNameChanged(dispatch,widgetId, newName),
+    linkURLChanged: (widgetId, newText) => actions.linkURLChanged(dispatch, widgetId, newText),
+    linkTextChanged: (widgetId, newText) => actions.linkTextChanged(dispatch, widgetId, newText),
+    linkNameChanged: (widgetId, newName) => actions.linkNameChanged(dispatch, widgetId, newName)
 })
 
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading);
 const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph);
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
 const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image);
-
+const LinkContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Link);
 
 
 
@@ -203,7 +243,7 @@ const Widget = ({widget, preview, dispatch}) => {
                                     {widget.widgetType === 'Paragraph' && <h3>Paragraph widget</h3>}
                                     {widget.widgetType === 'List' && <h3>List widget</h3>}
                                     {widget.widgetType === 'Image' && <h3>Image widget</h3>}
-
+                                    {widget.widgetType === 'Link' && <h3>Link widget</h3>}
 
                                 </div>
 
@@ -236,6 +276,7 @@ const Widget = ({widget, preview, dispatch}) => {
                                             <option>Paragraph</option>
                                             <option>List</option>
                                             <option>Image</option>
+                                            <option>Link</option>
                                         </select>
                                     </div>
                                     <button className="btn-sm btn-danger">
@@ -258,6 +299,7 @@ const Widget = ({widget, preview, dispatch}) => {
                         {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
                         {widget.widgetType === 'List' && <ListContainer widget={widget}/>}
                         {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}
+                        {widget.widgetType === 'Link' && <LinkContainer widget={widget}/>}
 
                     </div>
 

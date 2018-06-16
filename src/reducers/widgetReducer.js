@@ -4,6 +4,40 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
     switch (action.type){
 
+        case constants.LINK_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.src = action.text;
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+
+        case constants.LINK_TEXT_CHANGED:
+            return {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.text = action.text;
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+
+        case constants.LINK_NAME_CHANGED:
+            return{
+                widgets:state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.name = action.text;
+
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+
         case constants.IMAGE_URL_CHANGED:
             return {
                 widgets: state.widgets.map(widget =>{
@@ -53,8 +87,6 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                     if(widget.id === action.id){
                         widget.text = action.text;
                     }
-                    console.log(widget)
-                    console.log(action)
                     return Object.assign({},widget);
                 })
             }
@@ -121,7 +153,6 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             }
 
         case constants.SELECT_WIDGET_TYPE:
-            console.log(action);
             let newState={
                 widgets:state.widgets.filter((widget)=>{
                     if(widget.id === action.id){
@@ -160,7 +191,7 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                         size: '1',
                         name: '',
                         listType: '0',
-                        src: 'https://picsum.photos/300/150'
+                        src: ''
                     }
                 ]
             }

@@ -1,5 +1,19 @@
 import * as constants from "../constants";
 
+
+export const linkNameChanged = (dispatch, widgetId, newName) =>(
+    dispatch({type:constants.LINK_NAME_CHANGED, id: widgetId, text: newName})
+)
+
+export const linkTextChanged = (dispatch, widgetId, newText) =>(
+    dispatch({type: constants.LINK_TEXT_CHANGED, id: widgetId, text: newText})
+)
+
+
+export const linkURLChanged = (dispatch, widgetId, newText) =>(
+    dispatch({type: constants.LINK_URL_CHANGED, id: widgetId, text: newText})
+)
+
 export const imageNameChanged = (dispatch, widgetId, newName) =>(
     dispatch({type:constants.IMAGE_NAME_CHANGED, id: widgetId, text: newName})
 )

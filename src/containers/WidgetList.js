@@ -21,7 +21,6 @@ class WidgetList extends Component{
         let me = this;
         return(
             <div>
-                <h1>Widget List {this.props.widgets.length}</h1>
                 <div className="form-inline float-right">
                 <button
                     className="btn btn-success"
