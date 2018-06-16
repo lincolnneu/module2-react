@@ -32,6 +32,7 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
                 </select>
 
                 <input
+                    placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
                     onChange={() => headingNameChanged(widget.id, nameElement.value)}
@@ -47,6 +48,87 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
     )
 }
 
+const Paragraph = ({widget,paragraphNameChanged,paragraphTextChanged,preview}) => {
+    let inputElem;
+    let nameElement;
+
+    return (
+        <div>
+            <div hidden={preview}>
+                <textarea
+                    className="form-control mb-3"
+                    placeholder="Paragraph text"
+                    value={widget.text}
+                    onChange={()=>paragraphTextChanged(widget.id, inputElem.value)}
+                    ref={node=> inputElem = node}/>
+                <input
+                    placeholder="Widget name"
+                    className="form-control mb-3"
+                    value={widget.name}
+                    onChange={() => paragraphNameChanged(widget.id, nameElement.value)}
+                    ref={node=> nameElement = node}/>
+                <h3>Preview</h3>
+            </div>
+            <p>{widget.text}</p>
+        </div>
+    )
+}
+
+const List = ({widget,listNameChanged,listTypeChanged,listTextChanged,preview}) => {
+    let inputElem;
+    let nameElement;
+    let selectElem;
+    let n = 0;
+
+    return (
+        <div>
+            <div hidden={preview}>
+                <textarea
+                    className="form-control mb-3"
+                    placeholder="Enter one list item per line"
+                    value={widget.text}
+                    onChange={() => listTextChanged(widget.id, inputElem.value)}
+                    ref={node => inputElem = node}/>
+
+                <select
+                    className="form-control mb-3"
+                    value={widget.listType}
+                    onChange={()=>listTypeChanged(widget.id, selectElem.value)}
+                    ref={node=> selectElem = node}>
+                    <option value="0">Unordered list</option>
+                    <option value="1">Ordered list</option>
+                </select>
+
+                <input
+                    placeholder="Widget name"
+                    className="form-control mb-3"
+                    value={widget.name}
+                    onChange={() => listNameChanged(widget.id, nameElement.value)}
+                    ref={node => nameElement = node}/>
+                <h3>Preview</h3>
+            </div>
+            {
+                widget.listType==0 &&<ul>
+                    {
+                        widget.text.split("\n").map(line=>{
+                            return(<li key={widget.id+'_'+n++}>{line}</li>);
+                        })
+                    }
+                </ul>
+            }
+            {
+                widget.listType==1 &&<ol>
+                    {
+                        widget.text.split("\n").map(line=>{
+                            return(<li key={widget.id+'_'+n++}>{line}</li>);
+                        })
+                    }
+                </ol>
+            }
+        </div>
+    )
+}
+
 
 const stateToPropsMapper = state =>({
     preview: state.preview
@@ -55,27 +137,24 @@ const stateToPropsMapper = state =>({
 const dispatchToPropsMapper = dispatch => ({
     headingNameChanged:(widgetId, newName) => actions.headingNameChanged(dispatch,widgetId, newName),
     headingTextChanged:(widgetId, newText) => actions.headingTextChanged(dispatch, widgetId, newText),
-    headingSizeChanged: (widgetId, newSize) => actions.headingSizeChanged(dispatch, widgetId, newSize)
+    headingSizeChanged: (widgetId, newSize) => actions.headingSizeChanged(dispatch, widgetId, newSize),
+    paragraphTextChanged: (widgetId, newText) => actions.paragraphTextChanged(dispatch, widgetId, newText),
+    paragraphNameChanged:(widgetId, newName) => actions.paragraphNameChanged(dispatch,widgetId, newName),
+    listTextChanged: (widgetId, newText) => actions.listTextChanged(dispatch, widgetId, newText),
+    listNameChanged:(widgetId, newName) => actions.listNameChanged(dispatch,widgetId, newName),
+    listTypeChanged: (widgetId, newType) => actions.listTypeChanged(dispatch, widgetId, newType)
 })
 
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading);
+const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph);
+const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
 
 
-
-const Paragraph = () =>(
-    <div>
-        <h2>Paragraph</h2>
-        <textarea></textarea>
-    </div>
-)
 
 const Image = () =>(
     <h2>Image</h2>
 )
 
-const List = () => (
-    <h2>List</h2>
-)
 
 
 
@@ -90,7 +169,12 @@ const Widget = ({widget, preview, dispatch}) => {
                         <div>
                             <div className="justify-content-between d-flex">
                                 <div>
-                                    <h3>Heading widget</h3>
+                                    {widget.widgetType === 'Heading' && <h3>Heading widget</h3>}
+                                    {widget.widgetType === 'Paragraph' && <h3>Paragraph widget</h3>}
+                                    {widget.widgetType === 'List' && <h3>List widget</h3>}
+                                    {widget.widgetType === 'Image' && <h3>Image widget</h3>}
+
+
                                 </div>
 
                                 <div className="form-group align-items-center d-flex">
@@ -141,8 +225,8 @@ const Widget = ({widget, preview, dispatch}) => {
 
                     <div>
                         {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
-                        {widget.widgetType === 'Paragraph' && <Paragraph/>}
-                        {widget.widgetType === 'List' && <List/>}
+                        {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
+                        {widget.widgetType === 'List' && <ListContainer widget={widget}/>}
                         {widget.widgetType === 'Image' && <Image/>}
 
                     </div>

@@ -1,8 +1,28 @@
 import * as constants from "../constants";
 
+export const listTypeChanged = (dispatch, widgetId, newType) =>(
+    dispatch({type:constants.LIST_TYPE_CHANGED, id: widgetId, text: newType})
+)
+
+export const listNameChanged = (dispatch, widgetId, newName) =>(
+    dispatch({type:constants.LIST_NAME_CHANGED, id: widgetId, text: newName})
+)
+
+export const listTextChanged = (dispatch, widgetId, newText) =>(
+    dispatch({type: constants.LIST_TEXT_CHANGED, id: widgetId, text: newText})
+)
+
+
+export const paragraphNameChanged = (dispatch, widgetId, newName) =>(
+    dispatch({type:constants.PARAGRAPH_NAME_CHANGED, id: widgetId, text: newName})
+)
+
+export const paragraphTextChanged = (dispatch, widgetId, newText) =>(
+    dispatch({type: constants.PARAGRAPH_TEXT_CHANGED, id: widgetId, text: newText})
+)
 
 export const headingNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type: constants.HEADING_NAME_CHANGED, id: widgetId, newName: newName})
+    dispatch({type: constants.HEADING_NAME_CHANGED, id: widgetId, text: newName})
 )
 
 export const headingTextChanged = (dispatch, widgetId, newText) =>(

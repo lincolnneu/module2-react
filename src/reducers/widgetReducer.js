@@ -3,11 +3,66 @@ import * as constants from "../constants";
 export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
     switch (action.type){
+
+        case constants.LIST_TYPE_CHANGED:
+            return{
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id == action.id){
+                        widget.listType = action.text;
+                    }
+                    return Object.assign({}, widget);
+                })
+            }
+
+        case constants.LIST_NAME_CHANGED:
+            return{
+                widgets:state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.name = action.text;
+
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+        case constants.LIST_TEXT_CHANGED:
+            return{
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.text = action.text;
+                    }
+                    console.log(widget)
+                    console.log(action)
+                    return Object.assign({},widget);
+                })
+            }
+
+        case constants.PARAGRAPH_NAME_CHANGED:
+            return{
+                widgets:state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.name = action.text;
+
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+        case constants.PARAGRAPH_TEXT_CHANGED:
+            return{
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.text = action.text;
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
         case constants.HEADING_NAME_CHANGED:
             return{
                 widgets:state.widgets.map(widget =>{
                     if(widget.id === action.id){
-                        widget.name = action.newName;
+                        widget.name = action.text;
 
                     }
                     return Object.assign({},widget);
@@ -81,7 +136,8 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                         text:'',
                         widgetType: 'Heading',
                         size: '1',
-                        name: ''
+                        name: '',
+                        listType: '0'
                     }
                 ]
             }
