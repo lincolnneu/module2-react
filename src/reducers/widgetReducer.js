@@ -4,6 +4,28 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
     switch (action.type){
 
+        case constants.IMAGE_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.src = action.text;
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
+
+        case constants.IMAGE_NAME_CHANGED:
+            return{
+                widgets:state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.name = action.text;
+
+                    }
+                    return Object.assign({},widget);
+                })
+            }
+
         case constants.LIST_TYPE_CHANGED:
             return{
                 widgets: state.widgets.map(widget =>{
@@ -137,7 +159,8 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                         widgetType: 'Heading',
                         size: '1',
                         name: '',
-                        listType: '0'
+                        listType: '0',
+                        src: 'https://picsum.photos/300/150'
                     }
                 ]
             }

@@ -129,6 +129,36 @@ const List = ({widget,listNameChanged,listTypeChanged,listTextChanged,preview}) 
     )
 }
 
+const Image = ({widget,imageURLChanged,imageNameChanged,preview}) => {
+    let inputElem;
+    let nameElement;
+
+    return (
+        <div>
+            <div hidden={preview}>
+
+                <input
+                    placeholder="image URL"
+                    className="form-control mb-3"
+                    value={widget.src}
+                    onChange={() => imageURLChanged(widget.id, inputElem.value)}
+                    ref={node=> inputElem = node}/>
+
+
+                <input
+                    placeholder="Widget name"
+                    className="form-control mb-3"
+                    value={widget.name}
+                    onChange={() => imageNameChanged(widget.id, nameElement.value)}
+                    ref={node=> nameElement = node}/>
+                <h3>Preview</h3>
+            </div>
+            <img src={widget.src}/>
+        </div>
+    )
+}
+
+
 
 const stateToPropsMapper = state =>({
     preview: state.preview
@@ -142,18 +172,18 @@ const dispatchToPropsMapper = dispatch => ({
     paragraphNameChanged:(widgetId, newName) => actions.paragraphNameChanged(dispatch,widgetId, newName),
     listTextChanged: (widgetId, newText) => actions.listTextChanged(dispatch, widgetId, newText),
     listNameChanged:(widgetId, newName) => actions.listNameChanged(dispatch,widgetId, newName),
-    listTypeChanged: (widgetId, newType) => actions.listTypeChanged(dispatch, widgetId, newType)
+    listTypeChanged: (widgetId, newType) => actions.listTypeChanged(dispatch, widgetId, newType),
+    imageURLChanged: (widgetId, newText) => actions.imageURLChanged(dispatch, widgetId, newText),
+    imageNameChanged:(widgetId, newName) => actions.imageNameChanged(dispatch,widgetId, newName),
 })
 
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading);
 const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph);
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
+const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image);
 
 
 
-const Image = () =>(
-    <h2>Image</h2>
-)
 
 
 
@@ -227,7 +257,7 @@ const Widget = ({widget, preview, dispatch}) => {
                         {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
                         {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
                         {widget.widgetType === 'List' && <ListContainer widget={widget}/>}
-                        {widget.widgetType === 'Image' && <Image/>}
+                        {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}
 
                     </div>
 

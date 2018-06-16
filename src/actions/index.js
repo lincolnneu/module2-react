@@ -1,5 +1,13 @@
 import * as constants from "../constants";
 
+export const imageNameChanged = (dispatch, widgetId, newName) =>(
+    dispatch({type:constants.IMAGE_NAME_CHANGED, id: widgetId, text: newName})
+)
+
+export const imageURLChanged = (dispatch, widgetId, newText) =>(
+    dispatch({type: constants.IMAGE_URL_CHANGED, id: widgetId, text: newText})
+)
+
 export const listTypeChanged = (dispatch, widgetId, newType) =>(
     dispatch({type:constants.LIST_TYPE_CHANGED, id: widgetId, text: newType})
 )
