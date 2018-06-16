@@ -13,6 +13,7 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
                 <h2>Heading {widget.size}</h2>
 
                 <input
+                    placeholder="Heading text"
                     className="form-control mb-3"
                     value={widget.text}
                     onChange={() => headingTextChanged(widget.id, inputElem.value)}
