@@ -19,17 +19,17 @@ export default class LessonTabsItem extends React.Component{
         let me = this;
         return( // return jsx declaration
             <div>
-                <li className={"nav-item"}>
-                    <span className={`nav-link ${me.props.attribute}`}>
-                            <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
-                                {this.props.title}
+                <li className={"nav-item"} style={{backgroundColor: "#666", marginRight: "5px"}}>
+                    <span className={`nav-link ${me.props.attribute}`} >
+                            <Link to = {`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`} style={{color: "#FFF"}}>
+                                {this.props.title}&nbsp;&nbsp;&nbsp;&nbsp;
                             </Link>
                             <i onClick={function(event){
                                 me.props.deleteLesson(me.props.lesson.id);
                                 me.sleep(2000);
                                 window.location.reload();
 
-                            } } type="button" className="fa fa-times"></i>
+                            } } className="fa fa-times"></i>
                         </span>
                 </li>
             </div>

@@ -122,7 +122,7 @@ export default class LessonTabs
         let lessons = this.state.lessons.map(function (lesson) {
             let at = '';
             if(me.state.curLessonId == lesson.id){
-                at = 'active';
+                at = 'bg-success';
             }
             return (
                     <LessonTabsItem key={lesson.id} attribute={at} title={lesson.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lesson={lesson} deleteLesson={me.deleteLesson}/>
