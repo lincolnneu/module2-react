@@ -112,7 +112,7 @@ export default class TopicList
         let topics = this.state.topics.map(function (topic) {
             let at = ''
             if(me.state.curTopicId == topic.id){
-                at = 'active';
+                at = 'btn-dark';
             }
             return (
                 <TopicPill key={topic.id} attribute={at} title={topic.title} courseId={me.props.courseId} moduleId={me.props.moduleId} lessonId={me.props.lessonId} topic={topic} deleteTopic={me.deleteTopic}/>
