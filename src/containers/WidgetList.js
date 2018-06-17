@@ -44,11 +44,13 @@ class WidgetList extends Component{
                 <br/>
 
                 <ul className="list-group">
-                    {this.props.widgets.map(widget =>(
-                        <WidgetContainer widget={widget}
-                                         preview={this.props.previewMode}
-                                         key={widget.id}/>
-                    ))}
+                    {
+                            this.props.widgets.map(widget =>(
+                                <WidgetContainer widget={widget}
+                                                preview={this.props.previewMode}
+                                                key={widget.id}/>
+                                ))
+                    }
 
                 </ul>
 

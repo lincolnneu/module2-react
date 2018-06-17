@@ -4,6 +4,61 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
     switch (action.type){
 
+        case constants.MOVE_UP:
+            let upperItem = 0;
+            state.widgets.forEach(widget=>{
+                if(widget.position === action.position - 1){
+                    upperItem = widget.id;
+                }
+            })
+
+            newState = Object.assign({}, state);
+            newState = {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.position-- ;
+
+                    }
+                    if(widget.id === upperItem){
+                        widget.position++;
+                    }
+                    return Object.assign({}, widget);
+                })
+            }
+
+            newState.widgets.sort((a,b)=>a.position - b.position);
+
+            return newState;
+
+
+
+
+        case constants.MOVE_DOWN:
+            let downItem = 0;
+            state.widgets.forEach(widget=>{
+                if(widget.position === action.position + 1){
+                    downItem = widget.id;
+                }
+            })
+            newState = Object.assign({}, state);
+            newState = {
+                widgets: state.widgets.map(widget =>{
+                    if(widget.id === action.id){
+                        widget.position++ ;
+
+                    }
+                    if(widget.id === downItem){
+                        widget.position--;
+
+                    }
+                    return Object.assign({}, widget);
+                })
+            }
+
+            newState.widgets.sort((a,b)=>a.position - b.position);
+
+            return newState;
+
         case constants.LINK_URL_CHANGED:
             return {
                 widgets: state.widgets.map(widget =>{
@@ -139,6 +194,7 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             // return {widgets:action.widgets};
             newState = Object.assign({}, state);
             newState.widgets = action.widgets;
+            newState.widgets.sort((a,b)=>a.position - b.position);
             return newState;
 
 
@@ -176,12 +232,31 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             newState.widgets = action.widgets;
             return newState;
         case constants.DELETE_WIDGET:
-            return{
+            let deletedPos
+            state.widgets.forEach(widget=>{
+                if(widget.id === action.id){
+                    deletedPos = state.widgets.indexOf(widget)
+                }
+            })
+
+            state.widgets.forEach(widget=>{
+                if(widget.position > deletedPos){
+                    widget.position--;
+                }
+            })
+
+            newState = Object.assign({}, state);
+            newState = {
                 widgets: state.widgets.filter(widget =>(
                     widget.id !== action.id
                 ))
             }
+
+
+            return newState;
+
         case constants.ADD_WIDGET:
+            console.log(state.widgets.length);
             return{
                 widgets: [
                     ...state.widgets,
@@ -191,7 +266,8 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
                         size: '1',
                         name: '',
                         listType: '0',
-                        src: ''
+                        src: '',
+                        position: state.widgets.length++
                     }
                 ]
             }

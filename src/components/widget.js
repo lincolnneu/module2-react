@@ -228,7 +228,7 @@ const LinkContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Link);
 
 
 
-const Widget = ({widget, preview, dispatch}) => {
+const Widget = ({widget, preview, dispatch, length}) => {
     let selectElement;
 
     return (
@@ -248,18 +248,31 @@ const Widget = ({widget, preview, dispatch}) => {
                                 </div>
 
                                 <div className="form-group align-items-center d-flex">
-                                    <button className="btn-sm btn-warning"
+                                    <button hidden={widget.position === 1} className="btn-sm btn-warning"
                                         style={{marginRight: "5px"}}>
                                         <i className="fa fa-arrow-up"
                                            style={{fontSize: "15px",color:"black"}}
-                                           onClick={()=>{alert("up arrow")}}/>
+                                           onClick={()=>{
+                                               dispatch({
+                                                   type: constants.MOVE_UP,
+                                                   id: widget.id,
+                                                   position: widget.position
+                                               })
+                                           }}/>
                                     </button>
 
-                                    <button  className="btn-warning btn-sm "
+                                    <button  hidden={widget.position === length} className="btn-warning btn-sm "
                                              style={{marginRight: "5px"}}>
                                         <i className="fa fa-arrow-down"
                                            style={{fontSize: "15px",color:"black"}}
-                                           onClick={()=>{alert("down arrow")}}/>
+                                           onClick={()=>{
+                                               dispatch({
+                                                   type: constants.MOVE_DOWN,
+                                                   id: widget.id,
+                                                   position: widget.position
+                                               })
+
+                                           }}/>
                                     </button>
 
                                     <div className="dropdown"
@@ -312,7 +325,8 @@ const Widget = ({widget, preview, dispatch}) => {
 
 const WidgetContainer = connect(
     state=>({
-        preview:state.preview
+        preview:state.preview,
+        length: state.widgets.length
     })
 )(Widget)
 
