@@ -10,8 +10,6 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
     return (
         <div>
             <div hidden={preview}>
-                <h2>Heading {widget.size}</h2>
-
                 <input
                     placeholder="Heading text"
                     className="form-control mb-3"

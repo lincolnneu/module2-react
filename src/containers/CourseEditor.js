@@ -52,11 +52,11 @@ export default class CourseEditor
                 </nav>
                 <br/>
                     <div>
-                        <div className="row">
-                            <div className="col-4">
+                        <div className="row content">
+                            <div className="col-sm-3 sidenav">
                                 <ModuleList courseId={this.state.courseId}/> {/*moduleList will know what to load.*/}
                             </div>
-                            <div className="col-8">
+                            <div className="col-sm-9">
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
 
 

@@ -4,11 +4,9 @@ import ReactDOM from 'react-dom'; // only need this in high level index
 import CourseManager from './containers/CourseManager';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import {createStore} from "redux";
-import {widgetReducer} from "./reducers/widgetReducer";
 
 
-
+const bootstrap = require('bootstrap');
 // className={"container-fluid"} add some paddings to both side.
 ReactDOM.render(
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseRow from "../components/CourseRow";
 import CourseServiceClient from "../services/CourseServiceClient"
+import './CourseList.css'
 
 
 class CourseList extends React.Component{
@@ -95,20 +96,36 @@ class CourseList extends React.Component{
         let me = this;
         return(
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                    <a className="navbar-brand" href="/courses">Course Manager</a>
+                <nav className="navbar navbar-expand-lg bg-dark fixed-top">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="/courses" style={{color : "#FFF"}}>Course Manager</a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <form className="input-group form-inline my-2 my-lg-0">
+                                <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101"/>
+                                <button onClick={
+                                    (event)=>{
+                                        me.checkTitleNull(event)
+                                            .then(me.createCourse);
+                                    }
+                                } className="btn btn-danger my-2 my-sm-0" type="button"><i className="fa fa-plus"></i></button>
+                            </form>
+                        </div>
 
-                    <form className="input-group form-inline my-2 my-lg-0">
-                        <input onChange={this.titleChanged} className="form-control mr-sm-2" id="titleFld" placeholder="cs101"/>
-                        <button onClick={
-                            (event)=>{
-                                me.checkTitleNull(event)
-                                    .then(me.createCourse);
-                                }
-                            } className="btn btn-outline-danger my-2 my-sm-0" type="button">+</button>
-                    </form>
+                        <button className="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3 collapsed"
+                                type="button" data-toggle="collapse" data-target="#myNavbar"
+                                aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30"
+                                 focusable="false"><title>Menu</title>
+                                <path stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                      stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+                            </svg>
+                        </button>
 
+                    </div>
                 </nav>
+
 
                 <h2>Course List</h2>
                 <table className="table table-striped">

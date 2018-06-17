@@ -31,9 +31,7 @@ export default class CourseManager extends Component{
                     {/* a bootstrap class */}
                     <div className="container-fluid">
                         {window.location.href === mainURL && <Welcome/>}
-                        <br/>
-                        <br/>
-                        <br/>
+                        <br/><br/>
                         <Route path="/courses" component={CourseList}/>
                         <Route path="/course/:courseId"  component={CourseEditor}/>
                     </div>

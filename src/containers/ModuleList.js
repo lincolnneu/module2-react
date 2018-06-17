@@ -1,8 +1,7 @@
 import React from 'react'
 import ModuleListItem from '../components/ModuleListItem'
 import ModuleServiceClient from '../services/ModuleServiceClient'
-import ModuleEditor from './ModuleEditor'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import './ModuleList.css'
 
 class ModuleList extends React.Component {
 
@@ -102,17 +101,16 @@ class ModuleList extends React.Component {
     render() {
         let me = this;
         return(
-
                 <div>
                     {/*<div className="row">*/}
-                        {/*<div className="col-4">*/}
+                        {/*<div className="">*/}
                             <button onClick={
                                 (event)=>{
                                     me.checkTitleNull(event)
                                         .then(me.createModule);
                                 }
 
-                                } className="btn btn-primary btn-block" type="button">
+                                } className="btn btn-dark btn-block" type="button">
                                 <i className="fa fa-plus"></i>
                             </button>
                             <br/>
@@ -125,7 +123,6 @@ class ModuleList extends React.Component {
                                 {this.renderListOfModules()}
                             </ul>
                         </div>
-
         )
     }
 }
