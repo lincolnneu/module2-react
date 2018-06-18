@@ -96,7 +96,7 @@ class CourseList extends React.Component{
         let me = this;
         return(
             <div>
-                <nav className="navbar navbar-expand-lg bg-dark fixed-top">
+                <nav className="navbar navbar-expand-md bg-dark fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <a className="navbar-brand" href="/courses" style={{color : "#FFF"}}>Course Manager</a>
@@ -118,8 +118,8 @@ class CourseList extends React.Component{
                                 aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30"
                                  focusable="false"><title>Menu</title>
-                                <path stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                      stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
+                                <path stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                      strokeMiterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
                             </svg>
                         </button>
 
