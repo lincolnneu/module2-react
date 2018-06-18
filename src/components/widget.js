@@ -33,7 +33,7 @@ const Heading = ({widget, headingNameChanged, headingSizeChanged,headingTextChan
                     placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
-                    onChange={() => headingNameChanged(widget.id, nameElement.value)}
+                    onChange={() => headingNameChanged(widget.id, widget.widgetType, nameElement.value)}
                     ref={node=> nameElement = node}/>
 
 
@@ -63,7 +63,7 @@ const Paragraph = ({widget,paragraphNameChanged,paragraphTextChanged,preview}) =
                     placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
-                    onChange={() => paragraphNameChanged(widget.id, nameElement.value)}
+                    onChange={() => paragraphNameChanged(widget.id, widget.widgetType,nameElement.value)}
                     ref={node=> nameElement = node}/>
                 <h3>Preview</h3>
             </div>
@@ -101,7 +101,7 @@ const List = ({widget,listNameChanged,listTypeChanged,listTextChanged,preview}) 
                     placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
-                    onChange={() => listNameChanged(widget.id, nameElement.value)}
+                    onChange={() => listNameChanged(widget.id, widget.widgetType,nameElement.value)}
                     ref={node => nameElement = node}/>
                 <h3>Preview</h3>
             </div>
@@ -147,7 +147,7 @@ const Image = ({widget,imageURLChanged,imageTextChanged,imageNameChanged,preview
                     placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
-                    onChange={() => imageNameChanged(widget.id, nameElement.value)}
+                    onChange={() => imageNameChanged(widget.id, widget.widgetType,nameElement.value)}
                     ref={node=> nameElement = node}/>
                 <h3>Preview</h3>
             </div>
@@ -184,7 +184,7 @@ const Link = ({widget,linkURLChanged,linkTextChanged,linkNameChanged,preview}) =
                     placeholder="Widget name"
                     className="form-control mb-3"
                     value={widget.name}
-                    onChange={() => linkNameChanged(widget.id, nameElement.value)}
+                    onChange={() => linkNameChanged(widget.id, widget.widgetType, nameElement.value)}
                     ref={node=> nameElement = node}/>
                 <h3>Preview</h3>
             </div>
@@ -200,19 +200,19 @@ const stateToPropsMapper = state =>({
 })
 
 const dispatchToPropsMapper = dispatch => ({
-    headingNameChanged:(widgetId, newName) => actions.headingNameChanged(dispatch,widgetId, newName),
+    headingNameChanged:(widgetId,widgetType,newName) => actions.headingNameChanged(dispatch,widgetId,widgetType,newName),
     headingTextChanged:(widgetId, newText) => actions.headingTextChanged(dispatch, widgetId, newText),
     headingSizeChanged: (widgetId, newSize) => actions.headingSizeChanged(dispatch, widgetId, newSize),
     paragraphTextChanged: (widgetId, newText) => actions.paragraphTextChanged(dispatch, widgetId, newText),
-    paragraphNameChanged:(widgetId, newName) => actions.paragraphNameChanged(dispatch,widgetId, newName),
+    paragraphNameChanged:(widgetId,widgetType,newName) => actions.paragraphNameChanged(dispatch,widgetId,widgetType,newName),
     listTextChanged: (widgetId, newText) => actions.listTextChanged(dispatch, widgetId, newText),
-    listNameChanged:(widgetId, newName) => actions.listNameChanged(dispatch,widgetId, newName),
+    listNameChanged:(widgetId, widgetType,newName) => actions.listNameChanged(dispatch,widgetId, widgetType,newName),
     listTypeChanged: (widgetId, newType) => actions.listTypeChanged(dispatch, widgetId, newType),
     imageURLChanged: (widgetId, newText) => actions.imageURLChanged(dispatch, widgetId, newText),
-    imageNameChanged:(widgetId, newName) => actions.imageNameChanged(dispatch,widgetId, newName),
+    imageNameChanged:(widgetId, widgetType, newName) => actions.imageNameChanged(dispatch,widgetId, widgetType, newName),
     linkURLChanged: (widgetId, newText) => actions.linkURLChanged(dispatch, widgetId, newText),
     linkTextChanged: (widgetId, newText) => actions.linkTextChanged(dispatch, widgetId, newText),
-    linkNameChanged: (widgetId, newName) => actions.linkNameChanged(dispatch, widgetId, newName)
+    linkNameChanged: (widgetId, widgetType, newName) => actions.linkNameChanged(dispatch, widgetId, widgetType, newName)
 })
 
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading);

@@ -2,6 +2,7 @@ import * as constants from "../constants";
 
 export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
     let newState
+    let flag
     switch (action.type){
 
         case constants.MOVE_UP:
@@ -82,14 +83,28 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
 
 
         case constants.LINK_NAME_CHANGED:
-            return{
-                widgets:state.widgets.map(widget =>{
-                    if(widget.id === action.id){
-                        widget.name = action.text;
+            flag = false;
 
-                    }
-                    return Object.assign({},widget);
-                })
+            state.widgets.forEach(widget=>{
+                if(widget.name === action.text&&widget.widgetType === action.widgetType&&widget.id !== action.id){
+                    alert("name should not duplicate!");
+                    console.log("name Duplicate!")
+                    flag = true;
+                }
+            })
+            if(!flag){
+                return{
+                    widgets:state.widgets.map(widget =>{
+                        if(widget.id === action.id){
+                            widget.name = action.text;
+
+                        }
+                        return Object.assign({},widget);
+                    })
+                }
+            }
+            else{
+                return state;
             }
 
 
@@ -105,16 +120,29 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
 
 
         case constants.IMAGE_NAME_CHANGED:
-            return{
-                widgets:state.widgets.map(widget =>{
-                    if(widget.id === action.id){
-                        widget.name = action.text;
+            flag = false;
 
-                    }
-                    return Object.assign({},widget);
-                })
+            state.widgets.forEach(widget=>{
+                if(widget.name === action.text&&widget.widgetType === action.widgetType&&widget.id !== action.id){
+                    alert("name should not duplicate!");
+                    console.log("name Duplicate!")
+                    flag = true;
+                }
+            })
+            if(!flag){
+                return{
+                    widgets:state.widgets.map(widget =>{
+                        if(widget.id === action.id){
+                            widget.name = action.text;
+
+                        }
+                        return Object.assign({},widget);
+                    })
+                }
             }
-
+            else{
+                return state;
+            }
         case constants.LIST_TYPE_CHANGED:
             return{
                 widgets: state.widgets.map(widget =>{
@@ -126,14 +154,28 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             }
 
         case constants.LIST_NAME_CHANGED:
-            return{
-                widgets:state.widgets.map(widget =>{
-                    if(widget.id === action.id){
-                        widget.name = action.text;
+            flag = false;
 
-                    }
-                    return Object.assign({},widget);
-                })
+            state.widgets.forEach(widget=>{
+                if(widget.name === action.text&&widget.widgetType === action.widgetType&&widget.id !== action.id){
+                    alert("name should not duplicate!");
+                    console.log("name Duplicate!")
+                    flag = true;
+                }
+            })
+            if(!flag){
+                return{
+                    widgets:state.widgets.map(widget =>{
+                        if(widget.id === action.id){
+                            widget.name = action.text;
+
+                        }
+                        return Object.assign({},widget);
+                    })
+                }
+            }
+            else{
+                return state;
             }
 
         case constants.LIST_TEXT_CHANGED:
@@ -147,14 +189,28 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             }
 
         case constants.PARAGRAPH_NAME_CHANGED:
-            return{
-                widgets:state.widgets.map(widget =>{
-                    if(widget.id === action.id){
-                        widget.name = action.text;
+            flag = false;
 
-                    }
-                    return Object.assign({},widget);
-                })
+            state.widgets.forEach(widget=>{
+                if(widget.name === action.text&&widget.widgetType === action.widgetType&&widget.id !== action.id){
+                    alert("name should not duplicate!");
+                    console.log("name Duplicate!")
+                    flag = true;
+                }
+            })
+            if(!flag){
+                return{
+                    widgets:state.widgets.map(widget =>{
+                        if(widget.id === action.id){
+                            widget.name = action.text;
+
+                        }
+                        return Object.assign({},widget);
+                    })
+                }
+            }
+            else{
+                return state;
             }
 
         case constants.PARAGRAPH_TEXT_CHANGED:
@@ -168,15 +224,31 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             }
 
         case constants.HEADING_NAME_CHANGED:
-            return{
-                widgets:state.widgets.map(widget =>{
-                    if(widget.id === action.id){
-                        widget.name = action.text;
+            flag = false;
 
-                    }
-                    return Object.assign({},widget);
-                })
+            state.widgets.forEach(widget=>{
+                if(widget.name === action.text&&widget.widgetType === action.widgetType&&widget.id !== action.id){
+                    alert("name should not duplicate!");
+                    console.log("name Duplicate!")
+                    flag = true;
+                }
+            })
+            if(!flag){
+                return{
+                    widgets:state.widgets.map(widget =>{
+                        if(widget.id === action.id){
+                            widget.name = action.text;
+
+                        }
+                        return Object.assign({},widget);
+                    })
+                }
             }
+            else{
+                return state;
+            }
+
+
         case constants.PREVIEW:
             newState = Object.assign({}, state);
             newState.preview = !state.preview;

@@ -1,8 +1,8 @@
 import * as constants from "../constants";
 
 
-export const linkNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type:constants.LINK_NAME_CHANGED, id: widgetId, text: newName})
+export const linkNameChanged = (dispatch, widgetId, widgetType,newName) =>(
+    dispatch({type:constants.LINK_NAME_CHANGED, id: widgetId, widgetType: widgetType, text: newName})
 )
 
 export const linkTextChanged = (dispatch, widgetId, newText) =>(
@@ -14,8 +14,8 @@ export const linkURLChanged = (dispatch, widgetId, newText) =>(
     dispatch({type: constants.LINK_URL_CHANGED, id: widgetId, text: newText})
 )
 
-export const imageNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type:constants.IMAGE_NAME_CHANGED, id: widgetId, text: newName})
+export const imageNameChanged = (dispatch, widgetId, widgetType,newName) =>(
+    dispatch({type:constants.IMAGE_NAME_CHANGED, id: widgetId, widgetType: widgetType,text: newName})
 )
 
 export const imageURLChanged = (dispatch, widgetId, newText) =>(
@@ -26,8 +26,8 @@ export const listTypeChanged = (dispatch, widgetId, newType) =>(
     dispatch({type:constants.LIST_TYPE_CHANGED, id: widgetId, text: newType})
 )
 
-export const listNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type:constants.LIST_NAME_CHANGED, id: widgetId, text: newName})
+export const listNameChanged = (dispatch, widgetId, widgetType, newName) =>(
+    dispatch({type:constants.LIST_NAME_CHANGED, id: widgetId, widgetType: widgetType, text: newName})
 )
 
 export const listTextChanged = (dispatch, widgetId, newText) =>(
@@ -35,16 +35,16 @@ export const listTextChanged = (dispatch, widgetId, newText) =>(
 )
 
 
-export const paragraphNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type:constants.PARAGRAPH_NAME_CHANGED, id: widgetId, text: newName})
+export const paragraphNameChanged = (dispatch, widgetId, widgetType, newName) =>(
+    dispatch({type:constants.PARAGRAPH_NAME_CHANGED, id: widgetId, widgetType: widgetType, text: newName})
 )
 
 export const paragraphTextChanged = (dispatch, widgetId, newText) =>(
     dispatch({type: constants.PARAGRAPH_TEXT_CHANGED, id: widgetId, text: newText})
 )
 
-export const headingNameChanged = (dispatch, widgetId, newName) =>(
-    dispatch({type: constants.HEADING_NAME_CHANGED, id: widgetId, text: newName})
+export const headingNameChanged = (dispatch, widgetId, widgetType, newName) =>(
+    dispatch({type: constants.HEADING_NAME_CHANGED, id: widgetId, widgetType: widgetType, text: newName})
 )
 
 export const headingTextChanged = (dispatch, widgetId, newText) =>(
