@@ -4,6 +4,8 @@ Course management system -- faculty part.
 
 Frontend is implemented mainly by react, javascript and jquery. Backend is based on spring boot.
 
+Accomplished Bonus: Enforce widget names to be unique within a topic.
+
 frontend:   
 heroku:```https://webdev-2018-summer-jiabo-react.herokuapp.com/```  
 github: ```https://github.com/lincolnneu/module2-react/releases/tag/hw3```
