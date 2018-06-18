@@ -1,4 +1,4 @@
-const HOST='http://localhost:8080';
+const HOST='https://webdev-summer-2018-lincoln.herokuapp.com/';
 const LESSON_API_URL = HOST+'/api/course/CID/module/MID/lesson';
 
 let _singleton = Symbol();

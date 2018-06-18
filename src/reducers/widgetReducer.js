@@ -219,7 +219,7 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             }
             return JSON.parse(JSON.stringify(newState));
         case constants.SAVE:
-            fetch('http://localhost:8080/api/topic/'+action.topicId+'/widget/save',{
+            fetch('https://webdev-summer-2018-lincoln.herokuapp.com/api/topic/'+action.topicId+'/widget/save',{
                 method:'post',
                 body: JSON.stringify(state.widgets),
                 headers:{
@@ -256,7 +256,6 @@ export const widgetReducer =(state={widgets: [], preview: false}, action) =>{
             return newState;
 
         case constants.ADD_WIDGET:
-            console.log(state.widgets.length);
             return{
                 widgets: [
                     ...state.widgets,
