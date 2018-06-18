@@ -147,7 +147,7 @@ export default class LessonTabs
                                 me.checkTitleNull(event)
                                     .then(me.createLesson);
                             }}
-                                className="btn btn-primary my-2 my-sm-0" type="button">
+                                className="btn btn-dark my-2 my-sm-0" type="button">
                             <i className="fa fa-plus"></i>
                         </button>
 

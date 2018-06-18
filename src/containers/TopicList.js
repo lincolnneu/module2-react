@@ -141,7 +141,7 @@ export default class TopicList
                                 (event)=>{
                                     me.checkTitleNull(event)
                                         .then(me.createTopic);
-                                }} className="btn btn-primary my-2 my-sm-0" type="button">
+                                }} className="btn btn-dark my-2 my-sm-0" type="button">
                                 <i className="fa fa-plus"></i>
                             </button>
                         </form>
