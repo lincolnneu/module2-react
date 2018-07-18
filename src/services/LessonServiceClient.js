@@ -1,5 +1,5 @@
-const HOST='https://webdev-summer-2018-lincoln.herokuapp.com/';
-const LESSON_API_URL = HOST+'/api/course/CID/module/MID/lesson';
+import * as constants from "../constants";
+const LESSON_API_URL = constants.HOST+'/api/course/CID/module/MID/lesson';
 
 let _singleton = Symbol();
 export default class LessonServiceClient { // this service is a singleton

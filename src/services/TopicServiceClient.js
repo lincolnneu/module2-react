@@ -1,5 +1,5 @@
-const HOST='https://webdev-summer-2018-lincoln.herokuapp.com/';
-let TOPIC_API_URL = HOST+ '/api/course/CID/module/MID/lesson/LID/topic';
+import * as constants from "../constants";
+let TOPIC_API_URL = constants.HOST+ '/api/course/CID/module/MID/lesson/LID/topic';
 
 let _singleton = Symbol();
 export default class TopicServiceClient { // this service is a singleton
