@@ -13,6 +13,7 @@ class CourseRow extends React.Component{
         let me = this;
         let u = this.props.course.owner;
         let curU = this.props.curU;
+        let course = this.props.course;
         if(u === curU){
             u = "me";
         }
@@ -27,6 +28,11 @@ class CourseRow extends React.Component{
                 <td>{u}</td>
                 <td>{this.props.course.modified}</td>
                 <td>
+                    {(course !== undefined && course.private === true)?<button onClick={function(){me.props.tagCoursePublic(course.id,course)}}
+                                            className="btn btn-primary">Tag Public</button>
+                                            :
+                                            <button onClick={function(){me.props.tagCoursePrivate(course.id,course)}}
+                                            className="btn btn-primary">Tag Private</button>}
                     <i onClick={function(){me.props.deleteCourse(me.props.course.id)}}
                        className="fa fa-times float-right"></i>
                 </td>

@@ -16,6 +16,8 @@ class CourseList extends React.Component{
         this.titleChanged = this.titleChanged.bind(this); // bind these methods to this component in constructor.
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.tagCoursePublic = this.tagCoursePublic.bind(this);
+        this.tagCoursePrivate = this.tagCoursePrivate.bind(this);
 
     }
 
@@ -47,7 +49,7 @@ class CourseList extends React.Component{
         if(this.state){
             courses = this.state.courses.map(
                 function(course){
-                    return <CourseRow key={course.id} curU={me.state.curUser.username} course={course} deleteCourse={me.deleteCourse}/>
+                    return <CourseRow key={course.id} curU={me.state.curUser.username} course={course} deleteCourse={me.deleteCourse} tagCoursePrivate={me.tagCoursePrivate} tagCoursePublic={me.tagCoursePublic}/>
                 }
             );
         }
@@ -82,6 +84,24 @@ class CourseList extends React.Component{
     createCourse(){
         this.courseService
             .createCourse(this.state.course)
+            .then(() => { this.findAllCourses();}); // refresh after pressing createCourse button
+    }
+
+
+
+    tagCoursePublic(courseId, course){
+        if(course === undefined){return;}
+        course.private = false;
+        this.courseService
+            .updateCourse(courseId, course)
+            .then(() => { this.findAllCourses();}); // refresh after pressing createCourse button
+    }
+
+    tagCoursePrivate(courseId, course){
+        if(course === undefined){return;}
+        course.private = true;
+        this.courseService
+            .updateCourse(courseId, course)
             .then(() => { this.findAllCourses();}); // refresh after pressing createCourse button
     }
 

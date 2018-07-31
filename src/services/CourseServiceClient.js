@@ -48,6 +48,17 @@ class CourseServiceClient {
         });
     }
 
+    updateCourse(courseId, course){
+        return fetch(COURSE_API_URL+ '/' + courseId, {
+            body: JSON.stringify(course),
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        })
+    }
+
     deleteCourse(courseId){
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'DELETE'
