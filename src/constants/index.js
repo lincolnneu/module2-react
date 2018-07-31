@@ -20,4 +20,4 @@ export const LINK_TEXT_CHANGED = 'LINK_TEXT_CHANGED'
 export const LINK_NAME_CHANGED = 'LINK_NAME_CHANGED'
 export const MOVE_UP = 'MOVE_UP'
 export const MOVE_DOWN = 'MOVE_DOWN'
-export const HOST='http://localhost:8080';
+export const HOST='https://webdev-2018-mooc-server.herokuapp.com';

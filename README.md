@@ -1,15 +1,19 @@
-# hw3-jiabo
+HW5 Whiteboard Student Enrollment System
 
-Course management system -- faculty part.
+Angular client:  
+github: https://github.com/lincolnneu/webdev-summer2018-angular-jiabo  
+release: https://github.com/lincolnneu/webdev-summer2018-angular-jiabo/releases/tag/1.0  
+heroku: https://webdev-2018-white-board.herokuapp.com
 
-Frontend is implemented mainly by react, javascript and jquery. Backend is based on spring boot.
+NodeJS server for user, section and enrollment data:  
+github: https://github.com/lincolnneu/webdev-summer-2018-node-server-jiabo  
+release: https://github.com/lincolnneu/webdev-summer-2018-node-server-jiabo/releases/tag/1.0  
+heroku: https://webdev-2018-server-student.herokuapp.com
 
-Accomplished Bonus: Enforce widget names to be unique within a topic.
+Spring Boot server for course data:  
+github: https://github.com/lincolnneu/webdev-summer-2018-java-server-jiabo/tree/mooc-server  
+release: https://github.com/lincolnneu/webdev-summer-2018-java-server-jiabo/releases/tag/1.0  
+heroku: https://webdev-2018-mooc-server.herokuapp.com
 
-frontend:   
-heroku:```https://webdev-2018-summer-jiabo-react.herokuapp.com/courses```  
-github: ```https://github.com/lincolnneu/module2-react/releases/tag/hw3```
-
-backend:  
-heruku: ```https://webdev-summer-2018-lincoln.herokuapp.com/```  
-github:```https://github.com/lincolnneu/webdev-summer-2018-java-server-jiabo/releases/tag/hw3```
+Full features with bonus implemented.
+To tag course as private, change in course database directly.

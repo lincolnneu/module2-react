@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 // const mainURL = "https://webdev-summer-2018-lincoln.herokuapp.com/";
 const mainURL = "http://localhost:3000/";
 const Welcome = () =>(
-    <h1 className="mr-sm-2 ">Welcome to hw3!!
+    <h1 className="mr-sm-2 ">Welcome to HW5!!
         <button className="btn btn-outline-success my-2 my-sm-0 pull-middle"  onClick={
             ()=>{
                 window.open(window.location.href.split('/')[0] + 'courses');
