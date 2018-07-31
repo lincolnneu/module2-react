@@ -4,7 +4,7 @@ import CourseEditor from './CourseEditor'
 import CourseList from "./CourseList"
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-const mainURL = "https://webdev-summer-2018-lincoln.herokuapp.com/";
+const mainURL = "https://webdev-summer-2018-jiabo-react.herokuapp.com/";
 // const mainURL = "http://localhost:3000/";
 const Welcome = () =>(
     <h1 className="mr-sm-2 ">Welcome to HW5!!
